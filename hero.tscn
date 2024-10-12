@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://qogfpjj1cloh"]
+
+[ext_resource type="Script" path="res://hero.gd" id="1_qu2c8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cn3gh"]
+radius = 5.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tid1u"]
+radius = 5.0
+height = 10.0
+rings = 2
+
+[node name="Hero" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_qu2c8")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cn3gh")
+
+[node name="HitBoxVisualizer" type="MeshInstance2D" parent="."]
+mesh = SubResource("CapsuleMesh_tid1u")
