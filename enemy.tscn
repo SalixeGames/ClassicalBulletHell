@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccrw7507jt47p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqk86"]
+radius = 64.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_rpgxm"]
+radius = 1.0
+height = 4.0
+radial_segments = 4
+rings = 8
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kqk86")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(64, 32)
+mesh = SubResource("SphereMesh_rpgxm")

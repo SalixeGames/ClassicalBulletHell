@@ -6,5 +6,5 @@
 scenes/1/scene = ExtResource("1_3hgi7")
 
 [resource]
-tile_size = Vector2i(20, 20)
+tile_size = Vector2i(32, 32)
 sources/2 = SubResource("TileSetScenesCollectionSource_wgs4r")

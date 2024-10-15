@@ -13,3 +13,15 @@ config_version=5
 config/name="ClassicalBulletHell"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=1920
+window/size/mode=2
+window/size/initial_position_type=0
+window/stretch/mode="viewport"
+
+[rendering]
+
+renderer/rendering_method="mobile"
