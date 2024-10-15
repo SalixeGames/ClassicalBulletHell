@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cpdnrfqrtimki" path="res://wall.tscn" id="1_3hgi7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wgs4r"]
-scenes/1/scene = ExtResource("1_3hgi7")
+scenes/2/scene = ExtResource("1_3hgi7")
 
 [resource]
-tile_size = Vector2i(32, 32)
+tile_size = Vector2i(64, 64)
 sources/2 = SubResource("TileSetScenesCollectionSource_wgs4r")
