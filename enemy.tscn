@@ -1,4 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccrw7507jt47p"]
+[gd_scene load_steps=6 format=3 uid="uid://ccrw7507jt47p"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_m26pj"]
+[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="2_6sf02"]
+
+[sub_resource type="Curve2D" id="Curve2D_e6824"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 301, 0, 0, 0, 0, 0, 220, 209, 0, 0, 0, 0, -194, 199, 0, 0, 0, 0, -159, 67, 0, 0, 0, 0, -324, 20, 0, 0, 0, 0, -203, -43, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqk86"]
 radius = 64.0
@@ -9,11 +18,20 @@ height = 4.0
 radial_segments = 4
 rings = 8
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="Node2D"]
+script = ExtResource("1_m26pj")
+projectile = ExtResource("2_6sf02")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_e6824")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_kqk86")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
 scale = Vector2(64, 32)
 mesh = SubResource("SphereMesh_rpgxm")

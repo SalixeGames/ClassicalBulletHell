@@ -6,9 +6,12 @@
 size = Vector2(64, 64)
 
 [node name="Wall" type="StaticBody2D"]
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1jjod")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_307gd")
+centered = false
+offset = Vector2(-32, -32)
