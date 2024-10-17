@@ -31,3 +31,6 @@ position = Vector2(-371, -258)
 [node name="Bullet3" parent="." instance=ExtResource("4_wbvfj")]
 position = Vector2(-167, -271)
 rotation = -1.5708
+
+[editable path="CharacterBody2D"]
+[editable path="CharacterBody2D/CirclePath"]

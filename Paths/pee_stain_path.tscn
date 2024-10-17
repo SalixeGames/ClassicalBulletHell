@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpxfog2lpcw3g"]
+
+[sub_resource type="Curve2D" id="Curve2D_xnp7v"]
+_data = {
+"points": PackedVector2Array(-74, -21, 74, 21, 0, -2, -53, 5, 53, -5, 325, -111, -40, -55, 40, 55, 445, -58, 26, -47, -26, 47, 501, 169, 134, 54, -134, -54, 296, 242, 189, 36, -189, -36, -116, 281, 120, -56, -120, 56, -309, 175, 99, 97, -99, -97, -412, 4, -176, -119, 176, 119, -357, -172, -57, -18, 57, 18, -135, -148, -63, -11, 63, 11, 0, -2)
+}
+point_count = 11
+
+[node name="PeeStainPath" type="Path2D"]
+curve = SubResource("Curve2D_xnp7v")

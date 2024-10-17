@@ -8,4 +8,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position += transform.x * 300 * delta
+	position += transform.x * 200 * delta
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()

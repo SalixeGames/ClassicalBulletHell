@@ -1,37 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccrw7507jt47p"]
+[gd_scene load_steps=7 format=3 uid="uid://ccrw7507jt47p"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_m26pj"]
 [ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="2_6sf02"]
+[ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Paths/circle_path.tscn" id="3_o8qq2"]
+[ext_resource type="PackedScene" uid="uid://cpxfog2lpcw3g" path="res://Paths/pee_stain_path.tscn" id="3_p0n5l"]
+[ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="4_ftgf5"]
 
-[sub_resource type="Curve2D" id="Curve2D_e6824"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 301, 0, 0, 0, 0, 0, 220, 209, 0, 0, 0, 0, -194, 199, 0, 0, 0, 0, -159, 67, 0, 0, 0, 0, -324, 20, 0, 0, 0, 0, -203, -43, 0, 0, 0, 0, 0, 0)
-}
-point_count = 8
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
+radius = 60.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kqk86"]
-radius = 64.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_rpgxm"]
-radius = 1.0
-height = 4.0
-radial_segments = 4
-rings = 8
-
-[node name="CharacterBody2D" type="Node2D"]
+[node name="CharacterBody2D" type="Node2D" node_paths=PackedStringArray("path_follow", "character_body")]
 script = ExtResource("1_m26pj")
+paths = Array[PackedScene]([ExtResource("3_o8qq2"), ExtResource("3_p0n5l")])
 projectile = ExtResource("2_6sf02")
+path_follow = NodePath("CirclePath/PathFollow2D")
+character_body = NodePath("CirclePath/PathFollow2D/CharacterBody2D")
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_e6824")
+[node name="CirclePath" parent="." instance=ExtResource("3_o8qq2")]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
+position = Vector2(-1, 0)
+rotation = -0.0116274
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D"]
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
-shape = SubResource("CircleShape2D_kqk86")
+[node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+scale = Vector2(6.76, 7)
+texture = ExtResource("4_ftgf5")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
-scale = Vector2(64, 32)
-mesh = SubResource("SphereMesh_rpgxm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_3gvjj")
+
+[editable path="CirclePath"]
