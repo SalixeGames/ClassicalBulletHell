@@ -19,8 +19,8 @@ tile_set = ExtResource("2_g7frc")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_utobv")]
-position = Vector2(-23, -789)
+[node name="Enemy" parent="." instance=ExtResource("3_utobv")]
+position = Vector2(-20, -821)
 
 [node name="Bullet" parent="." instance=ExtResource("4_wbvfj")]
 position = Vector2(-539, -238)
@@ -31,6 +31,3 @@ position = Vector2(-371, -258)
 [node name="Bullet3" parent="." instance=ExtResource("4_wbvfj")]
 position = Vector2(-167, -271)
 rotation = -1.5708
-
-[editable path="CharacterBody2D"]
-[editable path="CharacterBody2D/CirclePath"]

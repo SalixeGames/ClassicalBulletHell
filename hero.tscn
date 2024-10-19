@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://qogfpjj1cloh"]
+[gd_scene load_steps=5 format=3 uid="uid://qogfpjj1cloh"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_qu2c8"]
+[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="2_5j6uh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cn3gh"]
 radius = 5.0
@@ -13,6 +14,7 @@ rings = 2
 [node name="Hero" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_qu2c8")
+projectile = ExtResource("2_5j6uh")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cn3gh")

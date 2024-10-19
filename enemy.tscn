@@ -9,12 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
 radius = 60.0
 
-[node name="CharacterBody2D" type="Node2D" node_paths=PackedStringArray("path_follow", "character_body")]
-script = ExtResource("1_m26pj")
-paths = Array[PackedScene]([ExtResource("3_o8qq2"), ExtResource("3_p0n5l")])
-projectile = ExtResource("2_6sf02")
-path_follow = NodePath("CirclePath/PathFollow2D")
-character_body = NodePath("CirclePath/PathFollow2D/CharacterBody2D")
+[node name="Enemy" type="Node2D"]
 
 [node name="CirclePath" parent="." instance=ExtResource("3_o8qq2")]
 
@@ -22,8 +17,13 @@ character_body = NodePath("CirclePath/PathFollow2D/CharacterBody2D")
 position = Vector2(-1, 0)
 rotation = -0.0116274
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
 collision_layer = 2
+script = ExtResource("1_m26pj")
+paths = Array[PackedScene]([ExtResource("3_o8qq2"), ExtResource("3_p0n5l")])
+projectile = ExtResource("2_6sf02")
+path_follow = NodePath("..")
+top_node = NodePath("../../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 scale = Vector2(6.76, 7)
