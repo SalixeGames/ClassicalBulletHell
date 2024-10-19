@@ -12,13 +12,17 @@ extends CharacterBody2D
 var can_shoot := true
 var angle : float = PI / 2
 var life : int = 7
+var old_progress : int = 0
 
 
 func _ready() -> void:
 	change_path()
 
 func _physics_process(delta: float) -> void:
+	old_progress = path_follow.progress
 	path_follow.progress += speed * delta
+	if old_progress > path_follow.progress:
+		change_path()
 
 func _process(delta: float) -> void:
 	spawn_bullet()
