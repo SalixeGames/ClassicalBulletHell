@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3gcutpkv0kuu"]
+
+[ext_resource type="Script" path="res://label.gd" id="1_movcm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vfsah"]
+font_size = 50
+
+[node name="EnemyLife" type="Label" node_paths=PackedStringArray("enemy")]
+offset_left = -623.0
+offset_top = -970.0
+offset_right = -342.0
+offset_bottom = -901.0
+text = "Salut
+"
+label_settings = SubResource("LabelSettings_vfsah")
+script = ExtResource("1_movcm")
+enemy = NodePath("")

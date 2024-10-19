@@ -21,3 +21,5 @@ shape = SubResource("CircleShape2D_cn3gh")
 
 [node name="HitBoxVisualizer" type="MeshInstance2D" parent="."]
 mesh = SubResource("CapsuleMesh_tid1u")
+
+[connection signal="on_hit" from="." to="." method="got_hit"]

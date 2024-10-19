@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 var can_shoot := true
 var angle : float = PI / 2
+var life : int = 7
 
 
 func _ready() -> void:
@@ -21,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	spawn_bullet()
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("change_path"):
 		change_path()
 	
 func spawn_bullet():
@@ -47,5 +48,12 @@ func change_path():
 	if path_index == len(paths):
 		path_index = 0
 
-func got_hit():
+func got_hit(value: int):
+	life -= value
+	if life <= 0:
+		die()
+
+func die():
 	queue_free()
+
+signal on_hit(life : int)

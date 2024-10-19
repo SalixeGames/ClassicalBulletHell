@@ -32,4 +32,6 @@ texture = ExtResource("4_ftgf5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_3gvjj")
 
+[connection signal="on_hit" from="CirclePath/PathFollow2D/CharacterBody2D" to="CirclePath/PathFollow2D/CharacterBody2D" method="got_hit"]
+
 [editable path="CirclePath"]
