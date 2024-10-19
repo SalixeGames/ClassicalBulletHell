@@ -4,17 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="1_fpx25"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqtqm"]
-radius = 32.0
+radius = 16.0
 
 [node name="Bullet" type="Area2D"]
 top_level = true
 script = ExtResource("1_2w5ts")
+life_expectancy = 10.0
+speed = 600
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xqtqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 3.92)
+scale = Vector2(1.96, 2.04)
 texture = ExtResource("1_fpx25")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

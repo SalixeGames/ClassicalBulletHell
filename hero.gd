@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		bullet_instance.collision_layer = 1
 		get_parent().add_child(bullet_instance)
 		can_shoot = false
-		await  get_tree().create_timer(0.5).timeout
+		await  get_tree().create_timer(0.1).timeout
 		can_shoot = true
 
 	# Get the input direction and handle the movement/deceleration.
