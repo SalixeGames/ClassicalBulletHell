@@ -8,8 +8,6 @@ extends Resource
 @export var n_simult : int
 @export var projectile : PackedScene
 
-enum States {IDLE, AGGRESSIVE, }
-
 func _init(p_init_angle: float = 0, p_n_angles: int = 1, p_latency: float = 0.1, p_n_simult: int = 1) -> void:
 	init_angle = p_init_angle
 	n_angles = p_n_angles

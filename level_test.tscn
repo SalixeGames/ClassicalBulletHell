@@ -1,29 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://bqls5kyua67j2"]
+[gd_scene load_steps=7 format=4 uid="uid://bqls5kyua67j2"]
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
 [ext_resource type="TileSet" uid="uid://qfdu3av6mnpi" path="res://wall_tiles.tres" id="2_g7frc"]
-[ext_resource type="PackedScene" uid="uid://ccrw7507jt47p" path="res://enemy.tscn" id="3_utobv"]
-[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_05kq4"]
+[ext_resource type="PackedScene" uid="uid://ccrw7507jt47p" path="res://Ressources/Bosses/enemy.tscn" id="3_utobv"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="4_ddjbk"]
 [ext_resource type="Texture2D" uid="uid://b4q7wdj61msot" path="res://icon.svg" id="5_eqh13"]
-[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="5_im1sg"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_lsorj"]
-
-[sub_resource type="Resource" id="Resource_ywk5q"]
-script = ExtResource("4_05kq4")
-init_angle = 3.142
-n_angles = 12
-latency = 0.2
-n_simult = 6
-projectile = ExtResource("5_im1sg")
-
-[sub_resource type="Resource" id="Resource_qes4v"]
-script = ExtResource("4_05kq4")
-init_angle = 3.142
-n_angles = 1
-latency = 0.25
-n_simult = 1
-projectile = ExtResource("5_im1sg")
 
 [node name="LevelTest" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
@@ -42,13 +24,6 @@ visible = false
 [node name="Enemy" parent="." instance=ExtResource("3_utobv")]
 position = Vector2(0, -880)
 
-[node name="CirclePath" parent="Enemy" index="0"]
-position = Vector2(0, 0)
-
-[node name="CharacterBody2D" parent="Enemy/CirclePath/PathFollow2D" index="0"]
-speed = 100.0
-patterns = Array[ExtResource("4_05kq4")]([SubResource("Resource_ywk5q"), SubResource("Resource_qes4v")])
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="EnemyLife" parent="UI" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
@@ -56,7 +31,7 @@ offset_left = 8.0
 offset_top = 0.0
 offset_right = 289.0
 offset_bottom = 69.0
-enemy = NodePath("../../Enemy/CirclePath/PathFollow2D/CharacterBody2D")
+enemy = NodePath("../../Enemy/Path2D/PathFollow2D/CharacterBody2D")
 
 [node name="PlayerLife" parent="UI" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
 offset_left = 8.0
@@ -89,7 +64,6 @@ action_up = "move_up"
 action_down = "move_down"
 
 [connection signal="on_hit" from="Hero" to="UI/PlayerLife" method="_on_enemy_hit"]
-[connection signal="on_hit" from="Enemy/CirclePath/PathFollow2D/CharacterBody2D" to="UI/EnemyLife" method="_on_enemy_hit"]
+[connection signal="on_hit" from="Enemy/Path2D/PathFollow2D/CharacterBody2D" to="UI/EnemyLife" method="_on_enemy_hit"]
 
 [editable path="Enemy"]
-[editable path="Enemy/CirclePath"]

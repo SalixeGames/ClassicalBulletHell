@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://ccrw7507jt47p"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_m26pj"]
+[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="2_ebonk"]
+[ext_resource type="Script" path="res://bullet_pattern.gd" id="3_437i3"]
+[ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path.tscn" id="3_o8qq2"]
+[ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="4_ftgf5"]
+[ext_resource type="PackedScene" uid="uid://bdwra6ojejoo5" path="res://Ressources/Paths/line_path.tscn" id="5_eqwum"]
+
+[sub_resource type="Curve2D" id="Curve2D_75afb"]
+
+[sub_resource type="Resource" id="Resource_74yr7"]
+script = ExtResource("3_437i3")
+init_angle = 0.0
+n_angles = 0
+latency = 0.0
+n_simult = 0
+projectile = ExtResource("2_ebonk")
+
+[sub_resource type="Resource" id="Resource_rve2u"]
+script = ExtResource("3_437i3")
+init_angle = 0.0
+n_angles = 0
+latency = 0.0
+n_simult = 0
+
+[sub_resource type="Resource" id="Resource_scps6"]
+script = ExtResource("3_437i3")
+init_angle = 0.0
+n_angles = 0
+latency = 0.0
+n_simult = 0
+
+[sub_resource type="Resource" id="Resource_5tlif"]
+script = ExtResource("3_437i3")
+init_angle = 0.0
+n_angles = 0
+latency = 0.0
+n_simult = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
+radius = 60.0
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_75afb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-1, -4)
+rotation = -0.0116274
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
+collision_layer = 2
+script = ExtResource("1_m26pj")
+path_follow = NodePath("..")
+top_node = NodePath("../../..")
+pattern_idle_1 = SubResource("Resource_74yr7")
+pattern_idle_2 = SubResource("Resource_rve2u")
+pattern_aggro_1 = SubResource("Resource_scps6")
+pattern_aggro_2 = SubResource("Resource_5tlif")
+paths = Array[PackedScene]([ExtResource("5_eqwum"), ExtResource("3_o8qq2")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+scale = Vector2(6.76, 7)
+texture = ExtResource("4_ftgf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_3gvjj")
+
+[connection signal="on_hit" from="Path2D/PathFollow2D/CharacterBody2D" to="Path2D/PathFollow2D/CharacterBody2D" method="got_hit"]

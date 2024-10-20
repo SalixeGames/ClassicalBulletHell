@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv7xq22ajkml6"]
+
+[ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path.tscn" id="1_5iovq"]
+[ext_resource type="Script" path="res://enemy.gd" id="2_d3vi2"]
+[ext_resource type="PackedScene" uid="uid://cpxfog2lpcw3g" path="res://Ressources/Paths/pee_stain_path.tscn" id="3_0v4ld"]
+[ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="4_dyo5l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
+radius = 60.0
+
+[node name="Beethoven" type="Node2D"]
+
+[node name="CirclePath" parent="." instance=ExtResource("1_5iovq")]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
+rotation = -0.0116274
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
+collision_layer = 2
+script = ExtResource("2_d3vi2")
+path_follow = NodePath("..")
+top_node = NodePath("../../..")
+paths = Array[PackedScene]([ExtResource("1_5iovq"), ExtResource("3_0v4ld")])
+
+[node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+scale = Vector2(6.76, 7)
+texture = ExtResource("4_dyo5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_3gvjj")
+
+[connection signal="on_hit" from="CirclePath/PathFollow2D/CharacterBody2D" to="CirclePath/PathFollow2D/CharacterBody2D" method="got_hit"]
+
+[editable path="CirclePath"]
