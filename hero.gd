@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 750.0
 var can_shoot = true
 var life : int = 7
-@export var projectile : PackedScene
+@export var pattern : BulletPattern
 
 
 func _enter_tree() -> void:
@@ -13,12 +13,15 @@ func _enter_tree() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("shoot") and can_shoot:
-		var bullet_instance = projectile.instantiate()
+		var bullet_instance = pattern.projectile.instantiate()
+		
 		bullet_instance.global_transform = global_transform 
-		bullet_instance.rotation = -PI/2
+		bullet_instance.rotation = pattern.init_angle
 		bullet_instance.collision_mask = 2
 		bullet_instance.collision_layer = 1
+		
 		get_parent().add_child(bullet_instance)
+		
 		can_shoot = false
 		await  get_tree().create_timer(0.1).timeout
 		can_shoot = true

@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://qogfpjj1cloh"]
+[gd_scene load_steps=7 format=3 uid="uid://qogfpjj1cloh"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_qu2c8"]
 [ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="2_5j6uh"]
+[ext_resource type="Script" path="res://bullet_pattern.gd" id="3_uifgd"]
+
+[sub_resource type="Resource" id="Resource_knas7"]
+script = ExtResource("3_uifgd")
+init_angle = -1.571
+n_angles = 0
+latency = 0.0
+n_simult = 0
+projectile = ExtResource("2_5j6uh")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cn3gh"]
 radius = 5.0
@@ -12,9 +21,10 @@ height = 10.0
 rings = 2
 
 [node name="Hero" type="CharacterBody2D"]
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_qu2c8")
-projectile = ExtResource("2_5j6uh")
+pattern = SubResource("Resource_knas7")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cn3gh")
