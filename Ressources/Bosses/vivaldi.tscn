@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://s8t6lhkycuoe"]
+
+[ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path.tscn" id="1_h3k0n"]
+[ext_resource type="Script" path="res://enemy.gd" id="2_2sm68"]
+[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="3_kya54"]
+[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_d6wlr"]
+[ext_resource type="PackedScene" uid="uid://bdwra6ojejoo5" path="res://Ressources/Paths/line_path.tscn" id="5_8cl3x"]
+[ext_resource type="AudioStream" uid="uid://dexxbbotyhgal" path="res://Assets/Sound/Vivaldi.ogg" id="7_bpkij"]
+[ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="7_xkho0"]
+[ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="9_rnr70"]
+
+[sub_resource type="Resource" id="Resource_i4bdl"]
+script = ExtResource("4_d6wlr")
+init_angle = 0.785
+n_angles = 4
+latency = 0.1
+n_simult = 4
+projectile = ExtResource("3_kya54")
+
+[sub_resource type="Resource" id="Resource_j8pfv"]
+script = ExtResource("4_d6wlr")
+init_angle = 1.0
+n_angles = 1
+latency = 1.0
+n_simult = 1
+projectile = ExtResource("3_kya54")
+
+[sub_resource type="Resource" id="Resource_csxrt"]
+script = ExtResource("4_d6wlr")
+init_angle = 1.0
+n_angles = 4
+latency = 0.01
+n_simult = 3
+projectile = ExtResource("3_kya54")
+
+[sub_resource type="Resource" id="Resource_5xfg5"]
+script = ExtResource("4_d6wlr")
+init_angle = 2.0
+n_angles = 2
+latency = 2.0
+n_simult = 2
+projectile = ExtResource("3_kya54")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
+radius = 60.0
+
+[node name="Vivaldi" type="Node2D"]
+
+[node name="CirclePath" parent="." instance=ExtResource("1_h3k0n")]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
+rotation = -0.0116274
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
+z_index = 1
+collision_layer = 2
+script = ExtResource("2_2sm68")
+path_follow = NodePath("..")
+top_node = NodePath("../../..")
+life = 1
+pattern_idle_1 = SubResource("Resource_i4bdl")
+pattern_idle_2 = SubResource("Resource_j8pfv")
+pattern_aggro_1 = SubResource("Resource_csxrt")
+pattern_aggro_2 = SubResource("Resource_5xfg5")
+paths = Array[PackedScene]([ExtResource("5_8cl3x"), ExtResource("1_h3k0n"), ExtResource("5_8cl3x"), ExtResource("1_h3k0n")])
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+scale = Vector2(6.76, 7)
+texture = ExtResource("7_xkho0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_3gvjj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bpkij")
+pitch_scale = 1.24
+autoplay = true
+
+[node name="EnemyLife" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("9_rnr70")]
+offset_left = -632.0
+offset_top = -96.0
+offset_right = -351.0
+offset_bottom = -27.0
+enemy = NodePath("../CirclePath/PathFollow2D/CharacterBody2D")
+
+[connection signal="on_hit" from="CirclePath/PathFollow2D/CharacterBody2D" to="CirclePath/PathFollow2D/CharacterBody2D" method="got_hit"]
+
+[editable path="CirclePath"]

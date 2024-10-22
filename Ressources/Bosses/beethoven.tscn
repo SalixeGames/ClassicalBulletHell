@@ -58,13 +58,12 @@ collision_layer = 2
 script = ExtResource("2_d3vi2")
 path_follow = NodePath("..")
 top_node = NodePath("../../..")
-life = 4
+life = 200
 pattern_idle_1 = SubResource("Resource_i4bdl")
 pattern_idle_2 = SubResource("Resource_j8pfv")
 pattern_aggro_1 = SubResource("Resource_csxrt")
 pattern_aggro_2 = SubResource("Resource_5xfg5")
 paths = Array[PackedScene]([ExtResource("7_e26ok"), ExtResource("3_0v4ld"), ExtResource("1_5iovq"), ExtResource("3_0v4ld")])
-speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 scale = Vector2(6.76, 7)
@@ -85,7 +84,6 @@ offset_right = -351.0
 offset_bottom = -27.0
 enemy = NodePath("../CirclePath/PathFollow2D/CharacterBody2D")
 
-[connection signal="on_hit" from="CirclePath/PathFollow2D/CharacterBody2D" to="EnemyLife" method="_on_enemy_hit"]
 [connection signal="on_hit" from="CirclePath/PathFollow2D/CharacterBody2D" to="CirclePath/PathFollow2D/CharacterBody2D" method="got_hit"]
 
 [editable path="CirclePath"]

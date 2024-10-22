@@ -7,10 +7,9 @@ extends Label
 func _ready() -> void:
 	set_text("Life: %s" % enemy.life) # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	set_text("Life: %s" % enemy.life)
-
-func _on_enemy_hit(life : int):
-	set_text("Life: %s" % enemy.life)
+	if is_instance_valid(enemy):
+		set_text("Life: %s" % enemy.life)
+	else:
+		set_text("Dead")

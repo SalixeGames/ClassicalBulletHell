@@ -75,6 +75,7 @@ func got_hit(value: int):
 		die()
 
 func die():
+	emit_signal("on_death")
 	top_node.queue_free()
 
 func next_path():
@@ -97,3 +98,4 @@ func check_and_change_state():
 		current_state = States.AggroSick
 
 signal on_hit(life : int)
+signal on_death()

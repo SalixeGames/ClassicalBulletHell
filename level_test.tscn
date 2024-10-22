@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=4 uid="uid://bqls5kyua67j2"]
+[gd_scene load_steps=9 format=4 uid="uid://bqls5kyua67j2"]
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
+[ext_resource type="Script" path="res://level_manager.gd" id="1_vskd1"]
 [ext_resource type="TileSet" uid="uid://qfdu3av6mnpi" path="res://wall_tiles.tres" id="2_g7frc"]
 [ext_resource type="PackedScene" uid="uid://dv7xq22ajkml6" path="res://Ressources/Bosses/beethoven.tscn" id="3_mppk6"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="4_ddjbk"]
 [ext_resource type="Texture2D" uid="uid://b4q7wdj61msot" path="res://icon.svg" id="5_eqh13"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_lsorj"]
+[ext_resource type="PackedScene" uid="uid://s8t6lhkycuoe" path="res://Ressources/Bosses/vivaldi.tscn" id="7_objgv"]
 
 [node name="LevelTest" type="Node2D"]
+script = ExtResource("1_vskd1")
+bosses = Array[PackedScene]([ExtResource("7_objgv"), ExtResource("3_mppk6")])
 metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
 
 [node name="Hero" parent="." instance=ExtResource("1_38w8d")]
@@ -20,10 +24,6 @@ tile_set = ExtResource("2_g7frc")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
-
-[node name="Beethoven" parent="." instance=ExtResource("3_mppk6")]
-visible = false
-position = Vector2(0, -872)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
