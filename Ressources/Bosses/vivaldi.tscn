@@ -57,7 +57,6 @@ collision_layer = 2
 script = ExtResource("2_2sm68")
 path_follow = NodePath("..")
 top_node = NodePath("../../..")
-life = 1
 pattern_idle_1 = SubResource("Resource_i4bdl")
 pattern_idle_2 = SubResource("Resource_j8pfv")
 pattern_aggro_1 = SubResource("Resource_csxrt")
