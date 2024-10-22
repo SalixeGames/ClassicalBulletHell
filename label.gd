@@ -10,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	set_text("Life: %s" % enemy.life)
 
 func _on_enemy_hit(life : int):
 	set_text("Life: %s" % enemy.life)

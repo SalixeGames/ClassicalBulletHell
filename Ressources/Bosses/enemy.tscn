@@ -68,4 +68,6 @@ texture = ExtResource("4_ftgf5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_3gvjj")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Path2D/PathFollow2D/CharacterBody2D"]
+
 [connection signal="on_hit" from="Path2D/PathFollow2D/CharacterBody2D" to="Path2D/PathFollow2D/CharacterBody2D" method="got_hit"]

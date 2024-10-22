@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
 [ext_resource type="TileSet" uid="uid://qfdu3av6mnpi" path="res://wall_tiles.tres" id="2_g7frc"]
-[ext_resource type="PackedScene" uid="uid://ccrw7507jt47p" path="res://Ressources/Bosses/enemy.tscn" id="3_utobv"]
+[ext_resource type="PackedScene" uid="uid://dv7xq22ajkml6" path="res://Ressources/Bosses/beethoven.tscn" id="3_mppk6"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="4_ddjbk"]
 [ext_resource type="Texture2D" uid="uid://b4q7wdj61msot" path="res://icon.svg" id="5_eqh13"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_lsorj"]
@@ -21,17 +21,11 @@ tile_set = ExtResource("2_g7frc")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
 
-[node name="Enemy" parent="." instance=ExtResource("3_utobv")]
-position = Vector2(0, -880)
+[node name="Beethoven" parent="." instance=ExtResource("3_mppk6")]
+visible = false
+position = Vector2(0, -872)
 
 [node name="UI" type="CanvasLayer" parent="."]
-
-[node name="EnemyLife" parent="UI" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
-offset_left = 8.0
-offset_top = 0.0
-offset_right = 289.0
-offset_bottom = 69.0
-enemy = NodePath("../../Enemy/Path2D/PathFollow2D/CharacterBody2D")
 
 [node name="PlayerLife" parent="UI" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
 offset_left = 8.0
@@ -64,6 +58,3 @@ action_up = "move_up"
 action_down = "move_down"
 
 [connection signal="on_hit" from="Hero" to="UI/PlayerLife" method="_on_enemy_hit"]
-[connection signal="on_hit" from="Enemy/Path2D/PathFollow2D/CharacterBody2D" to="UI/EnemyLife" method="_on_enemy_hit"]
-
-[editable path="Enemy"]

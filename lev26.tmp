@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=4 uid="uid://bqls5kyua67j2"]
+
+[ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
+[ext_resource type="TileSet" uid="uid://qfdu3av6mnpi" path="res://wall_tiles.tres" id="2_g7frc"]
+[ext_resource type="PackedScene" uid="uid://dv7xq22ajkml6" path="res://Ressources/Bosses/beethoven.tscn" id="3_mppk6"]
+[ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="4_ddjbk"]
+[ext_resource type="Texture2D" uid="uid://b4q7wdj61msot" path="res://icon.svg" id="5_eqh13"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_lsorj"]
+
+[node name="LevelTest" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
+
+[node name="Hero" parent="." instance=ExtResource("1_38w8d")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD2//H/AgAAAAAAAgD2//L/AgAAAAAAAgD2//P/AgAAAAAAAgD2//T/AgAAAAAAAgD2//X/AgAAAAAAAgD2//b/AgAAAAAAAgD2//f/AgAAAAAAAgD2//j/AgAAAAAAAgD2//n/AgAAAAAAAgD2//r/AgAAAAAAAgD2//v/AgAAAAAAAgD2//z/AgAAAAAAAgD2//3/AgAAAAAAAgD2//7/AgAAAAAAAgD2////AgAAAAAAAgD2/wAAAgAAAAAAAgD2/wEAAgAAAAAAAgD2/wIAAgAAAAAAAgD2/wMAAgAAAAAAAgD2/wQAAgAAAAAAAgD2/wUAAgAAAAAAAgD2/wYAAgAAAAAAAgD2/wcAAgAAAAAAAgD2/wgAAgAAAAAAAgD2/wkAAgAAAAAAAgD2/woAAgAAAAAAAgD2/wsAAgAAAAAAAgD2/wwAAgAAAAAAAgD2/w0AAgAAAAAAAgD2/w4AAgAAAAAAAgD3//H/AgAAAAAAAgD3/w4AAgAAAAAAAgD4//H/AgAAAAAAAgD4/w4AAgAAAAAAAgD5//H/AgAAAAAAAgD5/w4AAgAAAAAAAgD6//H/AgAAAAAAAgD6/w4AAgAAAAAAAgD7//H/AgAAAAAAAgD7/w4AAgAAAAAAAgD8//H/AgAAAAAAAgD8/w4AAgAAAAAAAgD9//H/AgAAAAAAAgD9/w4AAgAAAAAAAgD+//H/AgAAAAAAAgD+/w4AAgAAAAAAAgD///H/AgAAAAAAAgD//w4AAgAAAAAAAgAAAPH/AgAAAAAAAgAAAA4AAgAAAAAAAgABAPH/AgAAAAAAAgABAA4AAgAAAAAAAgACAPH/AgAAAAAAAgACAA4AAgAAAAAAAgADAPH/AgAAAAAAAgADAA4AAgAAAAAAAgAEAPH/AgAAAAAAAgAEAA4AAgAAAAAAAgAFAPH/AgAAAAAAAgAFAA4AAgAAAAAAAgAGAPH/AgAAAAAAAgAGAA4AAgAAAAAAAgAHAPH/AgAAAAAAAgAHAA4AAgAAAAAAAgAIAPH/AgAAAAAAAgAIAA4AAgAAAAAAAgAJAPH/AgAAAAAAAgAJAPL/AgAAAAAAAgAJAPP/AgAAAAAAAgAJAPT/AgAAAAAAAgAJAPX/AgAAAAAAAgAJAPb/AgAAAAAAAgAJAPf/AgAAAAAAAgAJAPj/AgAAAAAAAgAJAPn/AgAAAAAAAgAJAPr/AgAAAAAAAgAJAPv/AgAAAAAAAgAJAPz/AgAAAAAAAgAJAP3/AgAAAAAAAgAJAP7/AgAAAAAAAgAJAP//AgAAAAAAAgAJAAAAAgAAAAAAAgAJAAEAAgAAAAAAAgAJAAIAAgAAAAAAAgAJAAMAAgAAAAAAAgAJAAQAAgAAAAAAAgAJAAUAAgAAAAAAAgAJAAYAAgAAAAAAAgAJAAcAAgAAAAAAAgAJAAgAAgAAAAAAAgAJAAkAAgAAAAAAAgAJAAoAAgAAAAAAAgAJAAsAAgAAAAAAAgAJAAwAAgAAAAAAAgAJAA0AAgAAAAAAAgAJAA4AAgAAAAAAAgA=")
+tile_set = ExtResource("2_g7frc")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+
+[node name="Beethoven" parent="." instance=ExtResource("3_mppk6")]
+position = Vector2(0, -872)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PlayerLife" parent="UI" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
+offset_left = 8.0
+offset_top = 1848.0
+offset_right = 289.0
+offset_bottom = 1917.0
+enemy = NodePath("../../Hero")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="UI"]
+position = Vector2(1200, 1592)
+scale = Vector2(0.609375, 0.609375)
+texture_normal = ExtResource("5_eqh13")
+action = "shoot"
+visibility_mode = 1
+
+[node name="Virtual Joystick" parent="UI" instance=ExtResource("5_lsorj")]
+anchors_preset = -1
+anchor_left = -0.499
+anchor_top = 0.5
+anchor_right = -0.499
+anchor_bottom = 0.5
+offset_left = 694.72
+offset_top = 584.0
+offset_right = 994.72
+offset_bottom = 884.0
+visibility_mode = 1
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
+
+[connection signal="on_hit" from="Hero" to="UI/PlayerLife" method="_on_enemy_hit"]

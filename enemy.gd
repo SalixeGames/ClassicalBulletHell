@@ -10,10 +10,12 @@ enum States  {IdleHealty, IdleSick, AggroHealty, AggroSick}
 
 var can_shoot := true
 var old_progress : int = 0
+var current_state : States = States.IdleHealty
 
 # Modulable variables for difficulty
 @export_category("Difficulty")
 @export var life : int = 100
+var max_life : int
 
 @export var pattern_idle_1 : BulletPattern
 @export var pattern_idle_2 : BulletPattern
@@ -25,6 +27,7 @@ var patterns : Dictionary
 
 
 func _ready() -> void:
+	max_life = life
 	patterns = {
 		States.IdleHealty: pattern_idle_1,
 		States.IdleSick: pattern_idle_2,
@@ -37,11 +40,10 @@ func _physics_process(delta: float) -> void:
 	old_progress = path_follow.progress
 	path_follow.progress += speed * delta
 	if old_progress > path_follow.progress:
-		next_path()
-		change_path()
+		check_and_change_state()
 
 func _process(delta: float) -> void:
-	spawn_bullet(patterns[States.IdleHealty])
+	spawn_bullet(patterns[current_state])
 	if Input.is_action_just_pressed("change_path"):
 		next_path()
 		change_path()
@@ -73,11 +75,25 @@ func got_hit(value: int):
 		die()
 
 func die():
-	queue_free()
+	top_node.queue_free()
 
 func next_path():
 	path_index += 1
 	if path_index >= len(paths):
 		path_index = 0
+		
+func check_and_change_state():
+	if current_state == States.IdleHealty and life <= 3 * (max_life / 4):
+		next_path()
+		change_path()
+		current_state = States.AggroHealty
+	elif current_state == States.AggroHealty and life <= 2 * (max_life / 4):
+		next_path()
+		change_path()
+		current_state = States.IdleSick
+	elif current_state == States.IdleSick and life <= 1 * (max_life / 4):
+		next_path()
+		change_path()
+		current_state = States.AggroSick
 
 signal on_hit(life : int)
