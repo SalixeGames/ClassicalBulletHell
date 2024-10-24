@@ -44,6 +44,8 @@ func got_hit(value: int):
 		die()
 
 func die():
+	emit_signal("on_death")
 	queue_free()
 
 signal on_hit(life : int)
+signal on_death()
