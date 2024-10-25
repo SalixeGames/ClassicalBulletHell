@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bqls5kyua67j2"]
+[gd_scene load_steps=14 format=4 uid="uid://bqls5kyua67j2"]
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
 [ext_resource type="Script" path="res://level_manager.gd" id="1_vskd1"]
@@ -10,25 +10,21 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_lsorj"]
 [ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="6_5ypvy"]
 [ext_resource type="PackedScene" uid="uid://s8t6lhkycuoe" path="res://Ressources/Bosses/vivaldi.tscn" id="7_objgv"]
-[ext_resource type="Script" path="res://player_stats.gd" id="11_k05r1"]
 
 [sub_resource type="Resource" id="Resource_r5uji"]
 script = ExtResource("5_ieeel")
 init_angle = -1.571
-n_angles = 1
-latency = 0.001
+n_angles = 2
+latency = 0.1
 n_simult = 3
 projectile = ExtResource("6_5ypvy")
-projectile_speed = 750.0
+projectile_speed = 1000.0
 
 [sub_resource type="Theme" id="Theme_ybu8h"]
 default_font_size = 100
 
 [sub_resource type="Theme" id="Theme_2cqx5"]
 default_font_size = 150
-
-[sub_resource type="Theme" id="Theme_hdfbk"]
-default_font_size = 50
 
 [node name="LevelTest" type="Node2D" node_paths=PackedStringArray("pause_menu", "player", "shop_menu", "shop_buttons")]
 script = ExtResource("1_vskd1")
@@ -53,6 +49,13 @@ tile_set = ExtResource("2_g7frc")
 visible = false
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PlayerLife" parent="UI" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
+offset_left = 8.0
+offset_top = 1848.0
+offset_right = 289.0
+offset_bottom = 1917.0
+enemy = NodePath("../../Hero")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="UI"]
 position = Vector2(1200, 1592)
@@ -106,7 +109,6 @@ layout_mode = 2
 text = "Exit"
 
 [node name="SpellShop" type="VBoxContainer" parent="UI"]
-process_mode = 2
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,60 +131,8 @@ text = "Upgrade1"
 layout_mode = 2
 text = "Upgrade2"
 
-[node name="PlayerStats" type="Control" parent="UI" node_paths=PackedStringArray("speed_label", "cadency_label", "bullet_speed_label", "player")]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -70.0
-offset_bottom = -30.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = SubResource("Theme_hdfbk")
-script = ExtResource("11_k05r1")
-speed_label = NodePath("Speed")
-cadency_label = NodePath("Cadency")
-bullet_speed_label = NodePath("BulletSpeed")
-player = NodePath("../../Hero")
-
-[node name="PlayerLife" parent="UI/PlayerStats" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ddjbk")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -1220.0
-offset_top = -40.0
-offset_right = -939.0
-offset_bottom = 29.0
-grow_vertical = 0
-enemy = NodePath("../../../Hero")
-
-[node name="Speed" type="Label" parent="UI/PlayerStats"]
-layout_mode = 0
-offset_left = -920.0
-offset_right = -773.0
-offset_bottom = 69.0
-text = "Speed"
-
-[node name="Cadency" type="Label" parent="UI/PlayerStats"]
-layout_mode = 0
-offset_left = -620.0
-offset_right = -416.0
-offset_bottom = 69.0
-text = "Cadency"
-
-[node name="BulletSpeed" type="Label" parent="UI/PlayerStats"]
-layout_mode = 0
-offset_left = -320.0
-offset_right = -179.0
-offset_bottom = 69.0
-text = "Bullet"
-
 [connection signal="on_death" from="Hero" to="." method="on_player_death"]
-[connection signal="on_hit" from="Hero" to="UI/PlayerStats/PlayerLife" method="_on_enemy_hit"]
+[connection signal="on_hit" from="Hero" to="UI/PlayerLife" method="_on_enemy_hit"]
 [connection signal="pressed" from="UI/PauseMenu/Resume" to="." method="resume"]
 [connection signal="pressed" from="UI/PauseMenu/MainMenu" to="." method="to_main_menu"]
 [connection signal="pressed" from="UI/PauseMenu/Exit" to="." method="exit_game"]

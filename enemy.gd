@@ -50,16 +50,11 @@ func _process(delta: float) -> void:
 	
 func spawn_bullet(pattern: BulletPattern):
 	if can_shoot:
-		for i in pattern.n_angles:
-			for j in pattern.n_simult:
-				var bullet_instance = pattern.projectile.instantiate()
-				var angle = pattern.get_angle(i, j)
-				bullet_instance.global_transform = global_transform 
-				bullet_instance.rotation = pattern.get_angle(i, j)
-				top_node.get_parent().add_child(bullet_instance)
-			can_shoot = false
-			await  get_tree().create_timer(pattern.latency).timeout
-			can_shoot = true
+		for bullet_instance in pattern.get_projectiles(global_transform):
+			top_node.get_parent().add_child(bullet_instance)
+		can_shoot = false
+		await  get_tree().create_timer(pattern.latency).timeout
+		can_shoot = true
 
 func change_path():
 	var old_path = path_follow.get_parent()
