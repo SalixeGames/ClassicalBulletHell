@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://s8t6lhkycuoe"]
+[gd_scene load_steps=15 format=3 uid="uid://s8t6lhkycuoe"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path.tscn" id="1_h3k0n"]
 [ext_resource type="Script" path="res://enemy.gd" id="2_2sm68"]
 [ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="3_kya54"]
 [ext_resource type="Script" path="res://bullet_pattern.gd" id="4_d6wlr"]
+[ext_resource type="PackedScene" uid="uid://80r85brvtfjc" path="res://Ressources/Paths/twirl_path.tscn" id="5_7mo7q"]
 [ext_resource type="PackedScene" uid="uid://bdwra6ojejoo5" path="res://Ressources/Paths/line_path.tscn" id="5_8cl3x"]
 [ext_resource type="AudioStream" uid="uid://dexxbbotyhgal" path="res://Assets/Sound/Vivaldi.ogg" id="7_bpkij"]
 [ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="7_xkho0"]
@@ -65,7 +66,7 @@ pattern_idle_1 = SubResource("Resource_i4bdl")
 pattern_idle_2 = SubResource("Resource_j8pfv")
 pattern_aggro_1 = SubResource("Resource_csxrt")
 pattern_aggro_2 = SubResource("Resource_5xfg5")
-paths = Array[PackedScene]([ExtResource("5_8cl3x"), ExtResource("1_h3k0n"), ExtResource("5_8cl3x"), ExtResource("1_h3k0n")])
+paths = Array[PackedScene]([ExtResource("5_7mo7q"), ExtResource("1_h3k0n"), ExtResource("5_8cl3x"), ExtResource("1_h3k0n")])
 speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]

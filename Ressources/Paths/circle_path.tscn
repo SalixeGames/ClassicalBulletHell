@@ -7,6 +7,5 @@ _data = {
 point_count = 5
 
 [node name="CirclePath" type="Path2D"]
-position = Vector2(-1, -4)
 curve = SubResource("Curve2D_qqcto")
 metadata/_edit_group_ = true
