@@ -23,7 +23,8 @@ var max_life : int
 @export var pattern_aggro_2 : BulletPattern
 var patterns : Dictionary
 @export var paths : Array[PackedScene]
-@export var speed = 300.0
+## Number of rotations per hour
+@export var speed : float = 180.0 
 
 
 func _ready() -> void:
@@ -38,7 +39,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	old_progress = path_follow.progress
-	path_follow.progress += speed * delta
+	path_follow.progress_ratio += delta * (speed/3600.0)
 	if old_progress > path_follow.progress:
 		check_and_change_state()
 
@@ -83,11 +84,11 @@ func check_and_change_state():
 		next_path()
 		change_path()
 		current_state = States.AggroHealty
-	elif current_state == States.AggroHealty and life <= 2 * (max_life / 4):
+	if current_state == States.AggroHealty and life <= 2 * (max_life / 4):
 		next_path()
 		change_path()
 		current_state = States.IdleSick
-	elif current_state == States.IdleSick and life <= 1 * (max_life / 4):
+	if current_state == States.IdleSick and life <= 1 * (max_life / 4):
 		next_path()
 		change_path()
 		current_state = States.AggroSick

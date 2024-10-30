@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://by2n6i06l8anu"]
+
+[sub_resource type="Curve2D" id="Curve2D_qqcto"]
+_data = {
+"points": PackedVector2Array(-214.187, 1.25992, 0, 0, 0, 0, 0, 0, 0, 0, 576, 0, 0, 0, 0, 0, 384, 192, 0, 0, 0, 0, -384, 192, 0, 0, 0, 0, -576, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="CirclePath" type="Path2D"]
+curve = SubResource("Curve2D_qqcto")
+metadata/_edit_group_ = true

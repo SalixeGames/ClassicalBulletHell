@@ -67,7 +67,7 @@ pattern_idle_2 = SubResource("Resource_j8pfv")
 pattern_aggro_1 = SubResource("Resource_csxrt")
 pattern_aggro_2 = SubResource("Resource_5xfg5")
 paths = Array[PackedScene]([ExtResource("5_7mo7q"), ExtResource("1_h3k0n"), ExtResource("5_8cl3x"), ExtResource("1_h3k0n")])
-speed = 200.0
+speed = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 scale = Vector2(6.76, 7)

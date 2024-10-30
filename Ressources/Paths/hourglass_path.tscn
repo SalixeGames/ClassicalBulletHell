@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b70731gfwu7yl"]
+
+[sub_resource type="Curve2D" id="Curve2D_pnls1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 576, 0, 0, 0, 0, 0, 288, 96, 0, 0, 0, 0, 576, 192, 0, 0, 0, 0, -576, 192, 0, 0, 0, 0, -288, 96, 0, 0, 0, 0, -576, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[node name="LinePath" type="Path2D"]
+curve = SubResource("Curve2D_pnls1")
