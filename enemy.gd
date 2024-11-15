@@ -24,7 +24,7 @@ var max_life : int
 var patterns : Dictionary
 @export var paths : Array[PackedScene]
 ## Number of rotations per hour
-@export var speed : float = 180.0 
+@export var speed : float = 250
 
 
 func _ready() -> void:

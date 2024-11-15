@@ -1,22 +1,29 @@
-[gd_scene load_steps=16 format=4 uid="uid://bqls5kyua67j2"]
+[gd_scene load_steps=23 format=4 uid="uid://bqls5kyua67j2"]
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
 [ext_resource type="Script" path="res://level_manager.gd" id="1_vskd1"]
 [ext_resource type="TileSet" uid="uid://qfdu3av6mnpi" path="res://wall_tiles.tres" id="2_g7frc"]
-[ext_resource type="PackedScene" uid="uid://dv7xq22ajkml6" path="res://Ressources/Bosses/beethoven.tscn" id="3_mppk6"]
+[ext_resource type="PackedScene" uid="uid://dv7xq22ajkml6" path="res://Ressources/Bosses/4_beethoven.tscn" id="3_mppk6"]
+[ext_resource type="PackedScene" uid="uid://bwep542tcw8am" path="res://Ressources/Bosses/2_bach.tscn" id="3_p6ic7"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="4_ddjbk"]
+[ext_resource type="PackedScene" uid="uid://8qyrddil7h1y" path="res://Ressources/Bosses/3_mozart.tscn" id="4_v4ood"]
 [ext_resource type="Texture2D" uid="uid://b4q7wdj61msot" path="res://icon.svg" id="5_eqh13"]
 [ext_resource type="Script" path="res://bullet_pattern.gd" id="5_ieeel"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_lsorj"]
 [ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="6_5ypvy"]
-[ext_resource type="PackedScene" uid="uid://s8t6lhkycuoe" path="res://Ressources/Bosses/vivaldi.tscn" id="7_objgv"]
+[ext_resource type="PackedScene" uid="uid://brdk002mn5fig" path="res://Ressources/Bosses/5_chopin.tscn" id="6_h7xsw"]
+[ext_resource type="PackedScene" uid="uid://2tune60o436b" path="res://Ressources/Bosses/6_wagner.tscn" id="7_ul2ue"]
+[ext_resource type="PackedScene" uid="uid://bfwna52c0748t" path="res://Ressources/Bosses/7_offenbach.tscn" id="8_7dg4a"]
+[ext_resource type="PackedScene" uid="uid://47ja2q0ttm3f" path="res://Ressources/Bosses/8_brahms.tscn" id="9_wdjxt"]
+[ext_resource type="PackedScene" uid="uid://cdi76exrviiaj" path="res://Ressources/Bosses/9_tchaikovski.tscn" id="10_nljwj"]
 [ext_resource type="Script" path="res://player_stats.gd" id="11_k05r1"]
+[ext_resource type="PackedScene" uid="uid://dsmc6ffxmeymr" path="res://Ressources/Bosses/10_debussy.tscn" id="11_mqgp5"]
 
 [sub_resource type="Resource" id="Resource_r5uji"]
 script = ExtResource("5_ieeel")
 init_angle = -1.571
 n_angles = 1
-latency = 0.001
+latency = 1.0
 n_simult = 3
 projectile = ExtResource("6_5ypvy")
 projectile_speed = 750.0
@@ -32,7 +39,7 @@ default_font_size = 50
 
 [node name="LevelTest" type="Node2D" node_paths=PackedStringArray("pause_menu", "player", "shop_menu", "shop_buttons")]
 script = ExtResource("1_vskd1")
-bosses = Array[PackedScene]([ExtResource("7_objgv"), ExtResource("3_mppk6")])
+bosses = Array[PackedScene]([ExtResource("3_mppk6"), ExtResource("3_p6ic7"), ExtResource("4_v4ood"), ExtResource("3_mppk6"), ExtResource("6_h7xsw"), ExtResource("7_ul2ue"), ExtResource("8_7dg4a"), ExtResource("9_wdjxt"), ExtResource("10_nljwj"), ExtResource("11_mqgp5")])
 main_menu = "res://main_menu.tscn"
 pause_menu = NodePath("UI/PauseMenu")
 player = NodePath("Hero")

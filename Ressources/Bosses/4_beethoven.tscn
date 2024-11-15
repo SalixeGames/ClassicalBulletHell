@@ -1,0 +1,95 @@
+[gd_scene load_steps=17 format=3 uid="uid://dv7xq22ajkml6"]
+
+[ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_5iovq"]
+[ext_resource type="Script" path="res://enemy.gd" id="2_d3vi2"]
+[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="3_1rvtp"]
+[ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="4_dyo5l"]
+[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_kmcr4"]
+[ext_resource type="AudioStream" uid="uid://cywdyr3s8r0x5" path="res://Assets/Sound/Beethoven_Bagatela_WoO_59_Fur_Elise.mp3" id="5_2ms6s"]
+[ext_resource type="PackedScene" uid="uid://b70731gfwu7yl" path="res://Ressources/Paths/hourglass_path_e4.tscn" id="5_gp5w3"]
+[ext_resource type="PackedScene" uid="uid://hpd0xkouvvrx" path="res://Ressources/Paths/teeth_path_m1.tscn" id="6_j421c"]
+[ext_resource type="PackedScene" uid="uid://du1x6so62lgb2" path="res://Ressources/Paths/x_path_e5.tscn" id="7_5vqcu"]
+[ext_resource type="PackedScene" uid="uid://cmc50iwsmo0px" path="res://Ressources/Paths/sinus_path_m2.tscn" id="8_abx0k"]
+[ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="8_v22gg"]
+
+[sub_resource type="Resource" id="Resource_i4bdl"]
+script = ExtResource("4_kmcr4")
+init_angle = 0.785
+n_angles = 4
+latency = 0.2
+n_simult = 1
+projectile = ExtResource("3_1rvtp")
+projectile_speed = 350.0
+
+[sub_resource type="Resource" id="Resource_j8pfv"]
+script = ExtResource("4_kmcr4")
+init_angle = 0.785
+n_angles = 4
+latency = 0.2
+n_simult = 1
+projectile = ExtResource("3_1rvtp")
+projectile_speed = 400.0
+
+[sub_resource type="Resource" id="Resource_csxrt"]
+script = ExtResource("4_kmcr4")
+init_angle = 0.785
+n_angles = 6
+latency = 0.2
+n_simult = 1
+projectile = ExtResource("3_1rvtp")
+projectile_speed = 450.0
+
+[sub_resource type="Resource" id="Resource_5xfg5"]
+script = ExtResource("4_kmcr4")
+init_angle = 0.785
+n_angles = 6
+latency = 0.2
+n_simult = 1
+projectile = ExtResource("3_1rvtp")
+projectile_speed = 500.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
+radius = 60.0
+
+[node name="Beethoven" type="Node2D"]
+
+[node name="CirclePath" parent="." instance=ExtResource("1_5iovq")]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
+z_index = 1
+collision_layer = 2
+script = ExtResource("2_d3vi2")
+path_follow = NodePath("..")
+top_node = NodePath("../../..")
+life = 400
+pattern_idle_1 = SubResource("Resource_i4bdl")
+pattern_idle_2 = SubResource("Resource_j8pfv")
+pattern_aggro_1 = SubResource("Resource_csxrt")
+pattern_aggro_2 = SubResource("Resource_5xfg5")
+paths = Array[PackedScene]([ExtResource("5_gp5w3"), ExtResource("6_j421c"), ExtResource("7_5vqcu"), ExtResource("8_abx0k")])
+speed = 551.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+scale = Vector2(6.76, 7)
+texture = ExtResource("4_dyo5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_3gvjj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2ms6s")
+pitch_scale = 1.24
+autoplay = true
+
+[node name="EnemyLife" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("8_v22gg")]
+offset_left = -632.0
+offset_top = -120.0
+offset_right = -351.0
+offset_bottom = -51.0
+enemy = NodePath("../CirclePath/PathFollow2D/CharacterBody2D")
+
+[connection signal="on_hit" from="CirclePath/PathFollow2D/CharacterBody2D" to="CirclePath/PathFollow2D/CharacterBody2D" method="got_hit"]
+
+[editable path="CirclePath"]
