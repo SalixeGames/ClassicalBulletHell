@@ -20,10 +20,10 @@ var modif_dict : Dictionary
 func _ready() -> void:
 	instantiate_boss()
 	modif_dict = {
-		ACTIONS.Speed: ModifItem.new("Speed", player.update_speed, 50, 200),
-		ACTIONS.Life: ModifItem.new("Life", player.update_life, 1, 3),
-		ACTIONS.Cadency: ModifItem.new("Cadency", player.update_cadency, -1, -10),
-		ACTIONS.BulletSpeed: ModifItem.new("Bullet Speed", player.update_bullet_speed, 50, 200)
+		ACTIONS.Speed: ModifItem.new("Speed", player.update_speed, 200, 400),
+		ACTIONS.Life: ModifItem.new("Life", player.update_life, 1, 10),
+		ACTIONS.Cadency: ModifItem.new("Cadency", player.update_cadency, -1, -25),
+		ACTIONS.BulletSpeed: ModifItem.new("Bullet Speed", player.update_bullet_speed, 200, 500)
 	}
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +43,7 @@ func on_boss_death():
 		instantiate_boss()
 		open_shop_menu()
 	else:
+		get_tree().paused = false
 		to_main_menu()
 
 func on_player_death():

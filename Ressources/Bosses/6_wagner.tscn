@@ -9,44 +9,40 @@
 [ext_resource type="PackedScene" uid="uid://hpd0xkouvvrx" path="res://Ressources/Paths/teeth_path_m1.tscn" id="7_gr8dk"]
 [ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="7_kmat2"]
 [ext_resource type="PackedScene" uid="uid://bdolo3lrs20a3" path="res://Ressources/Paths/star_path_h1.tscn" id="8_0q2c3"]
-[ext_resource type="AudioStream" uid="uid://cywdyr3s8r0x5" path="res://Assets/Sound/Beethoven_Bagatela_WoO_59_Fur_Elise.mp3" id="8_nrcas"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="9_47ke7"]
+[ext_resource type="AudioStream" uid="uid://bjd5y3i5t7jjt" path="res://Assets/Sound/wagner.mp3" id="10_jocno"]
 
 [sub_resource type="Resource" id="Resource_i4bdl"]
 script = ExtResource("4_ge121")
-init_angle = 0.785
-n_angles = 4
-latency = 0.1
-n_simult = 4
+init_angle = 0.0
+n_angles = 12
+latency = 0.3
 projectile = ExtResource("3_ea8ut")
-projectile_speed = 300.0
+projectile_speed = 600.0
 
 [sub_resource type="Resource" id="Resource_j8pfv"]
 script = ExtResource("4_ge121")
-init_angle = 1.0
-n_angles = 1
-latency = 1.0
-n_simult = 1
+init_angle = 0.0
+n_angles = 12
+latency = 0.3
 projectile = ExtResource("3_ea8ut")
-projectile_speed = 300.0
+projectile_speed = 600.0
 
 [sub_resource type="Resource" id="Resource_csxrt"]
 script = ExtResource("4_ge121")
-init_angle = 1.0
-n_angles = 4
-latency = 0.01
-n_simult = 3
+init_angle = 0.0
+n_angles = 15
+latency = 0.2
 projectile = ExtResource("3_ea8ut")
-projectile_speed = 300.0
+projectile_speed = 700.0
 
 [sub_resource type="Resource" id="Resource_5xfg5"]
 script = ExtResource("4_ge121")
-init_angle = 2.0
-n_angles = 2
-latency = 2.0
-n_simult = 2
+init_angle = 0.0
+n_angles = 15
+latency = 0.2
 projectile = ExtResource("3_ea8ut")
-projectile_speed = 300.0
+projectile_speed = 650.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
 radius = 60.0
@@ -79,7 +75,7 @@ texture = ExtResource("7_kmat2")
 shape = SubResource("CircleShape2D_3gvjj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_nrcas")
+stream = ExtResource("10_jocno")
 pitch_scale = 1.24
 autoplay = true
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://bqls5kyua67j2"]
+[gd_scene load_steps=24 format=4 uid="uid://bqls5kyua67j2"]
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
 [ext_resource type="Script" path="res://level_manager.gd" id="1_vskd1"]
 [ext_resource type="TileSet" uid="uid://qfdu3av6mnpi" path="res://wall_tiles.tres" id="2_g7frc"]
+[ext_resource type="PackedScene" uid="uid://s8t6lhkycuoe" path="res://Ressources/Bosses/1_vivaldi.tscn" id="2_vv522"]
 [ext_resource type="PackedScene" uid="uid://dv7xq22ajkml6" path="res://Ressources/Bosses/4_beethoven.tscn" id="3_mppk6"]
 [ext_resource type="PackedScene" uid="uid://bwep542tcw8am" path="res://Ressources/Bosses/2_bach.tscn" id="3_p6ic7"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="4_ddjbk"]
@@ -23,10 +24,9 @@
 script = ExtResource("5_ieeel")
 init_angle = -1.571
 n_angles = 1
-latency = 1.0
-n_simult = 3
+latency = 0.0
 projectile = ExtResource("6_5ypvy")
-projectile_speed = 750.0
+projectile_speed = 1000.0
 
 [sub_resource type="Theme" id="Theme_ybu8h"]
 default_font_size = 100
@@ -39,7 +39,7 @@ default_font_size = 50
 
 [node name="LevelTest" type="Node2D" node_paths=PackedStringArray("pause_menu", "player", "shop_menu", "shop_buttons")]
 script = ExtResource("1_vskd1")
-bosses = Array[PackedScene]([ExtResource("3_mppk6"), ExtResource("3_p6ic7"), ExtResource("4_v4ood"), ExtResource("3_mppk6"), ExtResource("6_h7xsw"), ExtResource("7_ul2ue"), ExtResource("8_7dg4a"), ExtResource("9_wdjxt"), ExtResource("10_nljwj"), ExtResource("11_mqgp5")])
+bosses = Array[PackedScene]([ExtResource("2_vv522"), ExtResource("3_p6ic7"), ExtResource("4_v4ood"), ExtResource("3_mppk6"), ExtResource("6_h7xsw"), ExtResource("7_ul2ue"), ExtResource("8_7dg4a"), ExtResource("9_wdjxt"), ExtResource("10_nljwj"), ExtResource("11_mqgp5")])
 main_menu = "res://main_menu.tscn"
 pause_menu = NodePath("UI/PauseMenu")
 player = NodePath("Hero")
@@ -49,6 +49,8 @@ metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
 
 [node name="Hero" parent="." instance=ExtResource("1_38w8d")]
 patterns = Array[ExtResource("5_ieeel")]([SubResource("Resource_r5uji")])
+life = 1000000
+speed = 1000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

@@ -8,16 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://du1x6so62lgb2" path="res://Ressources/Paths/x_path_e5.tscn" id="6_5rgcc"]
 [ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="7_e5oir"]
 [ext_resource type="PackedScene" uid="uid://b70731gfwu7yl" path="res://Ressources/Paths/hourglass_path_e4.tscn" id="7_prxsa"]
-[ext_resource type="AudioStream" uid="uid://cywdyr3s8r0x5" path="res://Assets/Sound/Beethoven_Bagatela_WoO_59_Fur_Elise.mp3" id="8_585jy"]
 [ext_resource type="PackedScene" uid="uid://hpd0xkouvvrx" path="res://Ressources/Paths/teeth_path_m1.tscn" id="8_qf6tl"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="9_hqarc"]
+[ext_resource type="AudioStream" uid="uid://bb1kl1grsuuu2" path="res://Assets/Sound/mozart.mp3" id="10_pojxo"]
 
 [sub_resource type="Resource" id="Resource_i4bdl"]
 script = ExtResource("4_mxwd7")
 init_angle = 1.571
 n_angles = 3
 latency = 0.3
-n_simult = 1
 projectile = ExtResource("3_xn3m3")
 projectile_speed = 300.0
 
@@ -26,7 +25,6 @@ script = ExtResource("4_mxwd7")
 init_angle = 1.571
 n_angles = 3
 latency = 0.3
-n_simult = 2
 projectile = ExtResource("3_xn3m3")
 projectile_speed = 300.0
 
@@ -35,16 +33,14 @@ script = ExtResource("4_mxwd7")
 init_angle = 1.571
 n_angles = 3
 latency = 0.15
-n_simult = 3
 projectile = ExtResource("3_xn3m3")
 projectile_speed = 300.0
 
 [sub_resource type="Resource" id="Resource_5xfg5"]
 script = ExtResource("4_mxwd7")
 init_angle = 1.571
-n_angles = 2
+n_angles = 7
 latency = 0.3
-n_simult = 4
 projectile = ExtResource("3_xn3m3")
 projectile_speed = 300.0
 
@@ -79,7 +75,7 @@ texture = ExtResource("7_e5oir")
 shape = SubResource("CircleShape2D_3gvjj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_585jy")
+stream = ExtResource("10_pojxo")
 pitch_scale = 1.24
 autoplay = true
 
