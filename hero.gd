@@ -4,6 +4,7 @@ extends CharacterBody2D
 var can_shoot = true
 
 @export_category("Scallable Stats")
+@export var id : String = "Player"
 @export var patterns : Array[BulletPattern]
 @export var life : int = 7
 @export var speed = 750.0

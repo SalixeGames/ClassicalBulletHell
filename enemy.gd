@@ -15,6 +15,7 @@ var current_state : States = States.IdleHealty
 # Modulable variables for difficulty
 @export_category("Difficulty")
 @export var life : int = 100
+@export var id : int = 0
 var max_life : int
 
 @export var pattern_idle_1 : BulletPattern
