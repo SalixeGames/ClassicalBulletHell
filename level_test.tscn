@@ -24,9 +24,9 @@
 script = ExtResource("5_ieeel")
 init_angle = -1.571
 n_angles = 1
-latency = 0.0
+latency = 0.25
 projectile = ExtResource("6_5ypvy")
-projectile_speed = 1000.0
+projectile_speed = 750.0
 
 [sub_resource type="Theme" id="Theme_ybu8h"]
 default_font_size = 100
@@ -49,8 +49,8 @@ metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
 
 [node name="Hero" parent="." instance=ExtResource("1_38w8d")]
 patterns = Array[ExtResource("5_ieeel")]([SubResource("Resource_r5uji")])
-life = 1000000
-speed = 1000.0
+life = 9
+speed = 500.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

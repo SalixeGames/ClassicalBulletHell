@@ -7,6 +7,7 @@ var can_shoot = true
 @export var patterns : Array[BulletPattern]
 @export var life : int = 7
 @export var speed = 750.0
+@export var slow_speed = 250
 
 
 func _enter_tree() -> void:
@@ -25,12 +26,15 @@ func _physics_process(_delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var active_speed = speed
+	if Input.is_action_pressed("slow"):
+		active_speed = slow_speed
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.y = direction.y * speed
+		velocity.x = direction.x * active_speed
+		velocity.y = direction.y * active_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.y = move_toward(velocity.y, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, active_speed)
+		velocity.y = move_toward(velocity.y, 0, active_speed)
 
 	move_and_slide()
 
