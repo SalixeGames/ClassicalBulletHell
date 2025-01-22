@@ -16,7 +16,6 @@ script = ExtResource("4_d6wlr")
 init_angle = 1.571
 n_angles = 1
 latency = 0.75
-n_simult = 1
 projectile = ExtResource("3_kya54")
 projectile_speed = 250.0
 
@@ -25,7 +24,6 @@ script = ExtResource("4_d6wlr")
 init_angle = 2.356
 n_angles = 4
 latency = 0.75
-n_simult = 1
 projectile = ExtResource("3_kya54")
 projectile_speed = 300.0
 
@@ -34,7 +32,6 @@ script = ExtResource("4_d6wlr")
 init_angle = 1.571
 n_angles = 1
 latency = 0.5
-n_simult = 3
 projectile = ExtResource("3_kya54")
 projectile_speed = 350.0
 
@@ -43,7 +40,6 @@ script = ExtResource("4_d6wlr")
 init_angle = 2.356
 n_angles = 4
 latency = 0.5
-n_simult = 4
 projectile = ExtResource("3_kya54")
 projectile_speed = 400.0
 
@@ -62,6 +58,8 @@ collision_layer = 2
 script = ExtResource("2_2sm68")
 path_follow = NodePath("..")
 top_node = NodePath("../../..")
+life = 50
+id = 1
 pattern_idle_1 = SubResource("Resource_i4bdl")
 pattern_idle_2 = SubResource("Resource_j8pfv")
 pattern_aggro_1 = SubResource("Resource_csxrt")

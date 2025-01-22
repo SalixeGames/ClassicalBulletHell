@@ -44,7 +44,7 @@ main_menu = "res://main_menu.tscn"
 pause_menu = NodePath("UI/PauseMenu")
 player = NodePath("Hero")
 shop_menu = NodePath("UI/SpellShop")
-shop_buttons = [NodePath("UI/SpellShop/Upgrade1"), NodePath("UI/SpellShop/Upgrade2")]
+shop_buttons = [NodePath("UI/SpellShop/UpgradeSpeed"), NodePath("UI/SpellShop/UpgradeCadency"), NodePath("UI/SpellShop/UpgradeBulletSpeed"), NodePath("UI/SpellShop/AddLife")]
 metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
 
 [node name="Hero" parent="." instance=ExtResource("1_38w8d")]
@@ -130,13 +130,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_2cqx5")
 
-[node name="Upgrade1" type="Button" parent="UI/SpellShop"]
+[node name="UpgradeSpeed" type="Button" parent="UI/SpellShop"]
 layout_mode = 2
-text = "Upgrade1"
+text = "Speed"
 
-[node name="Upgrade2" type="Button" parent="UI/SpellShop"]
+[node name="UpgradeCadency" type="Button" parent="UI/SpellShop"]
 layout_mode = 2
-text = "Upgrade2"
+text = "Cadency
+"
+
+[node name="UpgradeBulletSpeed" type="Button" parent="UI/SpellShop"]
+layout_mode = 2
+text = "Bullet  Speed
+"
+
+[node name="AddLife" type="Button" parent="UI/SpellShop"]
+layout_mode = 2
+text = "Life
+"
 
 [node name="PlayerStats" type="Control" parent="UI" node_paths=PackedStringArray("speed_label", "cadency_label", "bullet_speed_label", "player")]
 layout_mode = 3
@@ -195,5 +206,7 @@ text = "Bullet"
 [connection signal="pressed" from="UI/PauseMenu/Resume" to="." method="resume"]
 [connection signal="pressed" from="UI/PauseMenu/MainMenu" to="." method="to_main_menu"]
 [connection signal="pressed" from="UI/PauseMenu/Exit" to="." method="exit_game"]
-[connection signal="pressed" from="UI/SpellShop/Upgrade1" to="." method="on_shop_button_pressed" binds= [0]]
-[connection signal="pressed" from="UI/SpellShop/Upgrade2" to="." method="on_shop_button_pressed" binds= [1]]
+[connection signal="pressed" from="UI/SpellShop/UpgradeSpeed" to="." method="on_shop_button_pressed" binds= [0]]
+[connection signal="pressed" from="UI/SpellShop/UpgradeCadency" to="." method="on_shop_button_pressed" binds= [1]]
+[connection signal="pressed" from="UI/SpellShop/UpgradeBulletSpeed" to="." method="on_shop_button_pressed" binds= [2]]
+[connection signal="pressed" from="UI/SpellShop/AddLife" to="." method="on_shop_button_pressed" binds= [3]]
