@@ -17,12 +17,14 @@ func _enter_tree() -> void:
 func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("shoot") and can_shoot:
+		$AnimationTree.set("parameters/Transition/transition_request", "shooting")
 		for bullet_instance in patterns[0].get_projectiles(global_transform, 2, 1):
 			get_parent().add_child(bullet_instance)
 		
 		can_shoot = false
 		await  get_tree().create_timer(patterns[0].latency).timeout
 		can_shoot = true
+		$AnimationTree.set("parameters/Transition/transition_request", "idle")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

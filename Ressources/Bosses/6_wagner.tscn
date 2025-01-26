@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_flav1"]
 [ext_resource type="Script" path="res://enemy.gd" id="2_5ix8u"]
-[ext_resource type="PackedScene" uid="uid://bcqj4vrh8n4hx" path="res://projectile.tscn" id="3_ea8ut"]
+[ext_resource type="PackedScene" uid="uid://b4jh236kf5aa4" path="res://Ressources/Projectiles/wagner_projectile.tscn" id="3_pgj6l"]
 [ext_resource type="Script" path="res://bullet_pattern.gd" id="4_ge121"]
 [ext_resource type="PackedScene" uid="uid://du1x6so62lgb2" path="res://Ressources/Paths/x_path_e5.tscn" id="5_4lauy"]
 [ext_resource type="PackedScene" uid="uid://cmc50iwsmo0px" path="res://Ressources/Paths/sinus_path_m2.tscn" id="6_emetp"]
 [ext_resource type="PackedScene" uid="uid://hpd0xkouvvrx" path="res://Ressources/Paths/teeth_path_m1.tscn" id="7_gr8dk"]
-[ext_resource type="Texture2D" uid="uid://douxk8ths4u6s" path="res://Assets/Sprites/ball.png" id="7_kmat2"]
 [ext_resource type="PackedScene" uid="uid://bdolo3lrs20a3" path="res://Ressources/Paths/star_path_h1.tscn" id="8_0q2c3"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="9_47ke7"]
+[ext_resource type="Texture2D" uid="uid://6cb7jtlxpr5r" path="res://Assets/Sprites/wagner.png" id="9_httpi"]
 [ext_resource type="AudioStream" uid="uid://bjd5y3i5t7jjt" path="res://Assets/Sound/wagner.mp3" id="10_jocno"]
 
 [sub_resource type="Resource" id="Resource_i4bdl"]
@@ -17,7 +17,7 @@ script = ExtResource("4_ge121")
 init_angle = 0.0
 n_angles = 12
 latency = 0.3
-projectile = ExtResource("3_ea8ut")
+projectile = ExtResource("3_pgj6l")
 projectile_speed = 600.0
 
 [sub_resource type="Resource" id="Resource_j8pfv"]
@@ -25,7 +25,7 @@ script = ExtResource("4_ge121")
 init_angle = 0.0
 n_angles = 12
 latency = 0.3
-projectile = ExtResource("3_ea8ut")
+projectile = ExtResource("3_pgj6l")
 projectile_speed = 600.0
 
 [sub_resource type="Resource" id="Resource_csxrt"]
@@ -33,7 +33,7 @@ script = ExtResource("4_ge121")
 init_angle = 0.0
 n_angles = 15
 latency = 0.2
-projectile = ExtResource("3_ea8ut")
+projectile = ExtResource("3_pgj6l")
 projectile_speed = 700.0
 
 [sub_resource type="Resource" id="Resource_5xfg5"]
@@ -41,17 +41,18 @@ script = ExtResource("4_ge121")
 init_angle = 0.0
 n_angles = 15
 latency = 0.2
-projectile = ExtResource("3_ea8ut")
+projectile = ExtResource("3_pgj6l")
 projectile_speed = 650.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gvjj"]
-radius = 60.0
+radius = 64.0
 
 [node name="Beethoven" type="Node2D"]
 
 [node name="CirclePath" parent="." instance=ExtResource("1_flav1")]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
+rotates = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
 z_index = 1
@@ -69,8 +70,7 @@ paths = Array[PackedScene]([ExtResource("5_4lauy"), ExtResource("6_emetp"), ExtR
 speed = 639.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
-scale = Vector2(6.76, 7)
-texture = ExtResource("7_kmat2")
+texture = ExtResource("9_httpi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_3gvjj")

@@ -8,7 +8,6 @@ var spawn_timer : float
 func _ready() -> void:
 	spawn_timer = 0
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += transform.x * speed * delta

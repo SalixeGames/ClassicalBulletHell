@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://174xtm1sk60s"]
+
+[ext_resource type="FontFile" uid="uid://keb1mrf2d4xx" path="res://Assets/Fonts/Permanent_Marker/PermanentMarker-Regular.ttf" id="1_s5can"]
+
+[resource]
+default_font = ExtResource("1_s5can")
+default_font_size = 64
+Button/colors/font_color = Color(1, 0.666667, 0.647059, 1)
+Button/colors/font_disabled_color = Color(1, 0.666667, 0.647059, 0.501961)
+Button/colors/font_focus_color = Color(1, 0.545098, 0.580392, 1)
+Button/colors/font_hover_color = Color(1, 0.545098, 0.580392, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.827451, 0.713726, 1)
+Button/colors/font_pressed_color = Color(1, 0.827451, 0.713726, 1)

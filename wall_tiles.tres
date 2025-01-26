@@ -1,10 +1,12 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://qfdu3av6mnpi"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://qfdu3av6mnpi"]
 
 [ext_resource type="PackedScene" uid="uid://cpdnrfqrtimki" path="res://wall.tscn" id="1_3hgi7"]
+[ext_resource type="PackedScene" uid="uid://dqly8tt0toge6" path="res://background.tscn" id="1_4h2km"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wgs4r"]
+scenes/1/scene = ExtResource("1_4h2km")
 scenes/2/scene = ExtResource("1_3hgi7")
 
 [resource]
-tile_size = Vector2i(64, 64)
+tile_size = Vector2i(32, 32)
 sources/2 = SubResource("TileSetScenesCollectionSource_wgs4r")

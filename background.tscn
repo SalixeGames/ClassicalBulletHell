@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqly8tt0toge6"]
+
+[ext_resource type="Texture2D" uid="uid://bthsgh4irdc08" path="res://Assets/Sprites/background.png" id="1_ur7b1"]
+
+[node name="Background" type="Sprite2D"]
+z_index = -100
+texture = ExtResource("1_ur7b1")
+metadata/_edit_group_ = true
