@@ -168,6 +168,12 @@ icon_alignment = 1
 
 [node name="AddLife" type="Button" parent="UI/SpellShop"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../UpgradeBulletSpeed")
+focus_neighbor_top = NodePath("../UpgradeBulletSpeed")
+focus_neighbor_right = NodePath("../UpgradeSpeed")
+focus_neighbor_bottom = NodePath("../UpgradeSpeed")
+focus_next = NodePath("../UpgradeSpeed")
+focus_previous = NodePath("../UpgradeBulletSpeed")
 text = "Life
 "
 icon = ExtResource("18_qhskl")
@@ -231,7 +237,11 @@ text = "Bullet"
 [connection signal="pressed" from="UI/PauseMenu/Resume" to="." method="resume"]
 [connection signal="pressed" from="UI/PauseMenu/MainMenu" to="." method="to_main_menu"]
 [connection signal="pressed" from="UI/PauseMenu/Exit" to="." method="exit_game"]
+[connection signal="pressed" from="UI/SpellShop/UpgradeSpeed" to="Hero" method="update_speed"]
 [connection signal="pressed" from="UI/SpellShop/UpgradeSpeed" to="." method="on_shop_button_pressed" binds= [0]]
+[connection signal="pressed" from="UI/SpellShop/UpgradeCadency" to="Hero" method="update_cadency"]
 [connection signal="pressed" from="UI/SpellShop/UpgradeCadency" to="." method="on_shop_button_pressed" binds= [1]]
+[connection signal="pressed" from="UI/SpellShop/UpgradeBulletSpeed" to="Hero" method="update_bullet_speed"]
 [connection signal="pressed" from="UI/SpellShop/UpgradeBulletSpeed" to="." method="on_shop_button_pressed" binds= [2]]
+[connection signal="pressed" from="UI/SpellShop/AddLife" to="Hero" method="update_life"]
 [connection signal="pressed" from="UI/SpellShop/AddLife" to="." method="on_shop_button_pressed" binds= [3]]

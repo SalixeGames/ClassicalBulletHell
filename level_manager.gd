@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 		if not is_paused:
 			is_paused = true
 			pause_menu.show()
+			grab_first_button(pause_menu)
 		else:
 			resume()
 
@@ -79,6 +80,10 @@ func open_shop_menu():
 		if modif_item.used:
 			shop_buttons[i].disabled = true
 	shop_menu.show()
+	grab_first_button(shop_menu)
+
+func grab_first_button(menu : VBoxContainer):
+	menu.get_children()[0].grab_focus()
 
 func close_shop_menu():
 	if get_tree().paused:
