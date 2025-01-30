@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 var can_shoot = true
+var intagible = false
 
 @export_category("Scallable Stats")
 @export var id : String = "Player"
@@ -10,21 +11,29 @@ var can_shoot = true
 @export var speed = 750.0
 @export var slow_speed = 250
 
+@export_category("Noises")
+@export var hurt_noise : AudioStreamMP3
+@export var  shoot_noise : AudioStreamMP3
+@export var death_noise :  AudioStreamMP3
+
 
 func _enter_tree() -> void:
 	Callable.create(0, "test")
 
 func _physics_process(_delta: float) -> void:
 	
-	if Input.is_action_pressed("shoot") and can_shoot:
+	if Input.is_action_pressed("shoot") and can_shoot and not intagible:
 		$AnimationTree.set("parameters/Transition/transition_request", "shooting")
+		$SoundPlayer.stream = death_noise
+		$SoundPlayer.play()
 		for bullet_instance in patterns[0].get_projectiles(global_transform, 2, 1):
 			get_parent().add_child(bullet_instance)
 		
 		can_shoot = false
 		await  get_tree().create_timer(patterns[0].latency).timeout
 		can_shoot = true
-		$AnimationTree.set("parameters/Transition/transition_request", "idle")
+		if not intagible:
+			$AnimationTree.set("parameters/Transition/transition_request", "idle")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -42,11 +51,30 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func got_hit(value: int):
-	life -= value
-	if life <= 0:
-		die()
+	if not intagible and get_tree():
+		$AnimationTree.set("parameters/Transition/transition_request", "hurt")
+		life -= value
+		
+		if life <= 0:
+			die()
+			
+		var old_speed = speed
+		speed = old_speed * 2
+		
+		$SoundPlayer.stream = hurt_noise
+		$SoundPlayer.play()
+		
+		intagible = true
+		if get_tree():
+			await  get_tree().create_timer(3).timeout
+		intagible = false
+		$AnimationTree.set("parameters/Transition/transition_request", "idle")
+		speed = old_speed
 
 func die():
+	$SoundPlayer.stream = death_noise
+	$SoundPlayer.play()
+	await get_tree().create_timer(0.5).timeout
 	emit_signal("on_death")
 	queue_free()
 

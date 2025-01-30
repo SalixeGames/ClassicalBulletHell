@@ -46,7 +46,7 @@ metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
 
 [node name="Hero" parent="." instance=ExtResource("1_38w8d")]
 patterns = Array[ExtResource("5_ieeel")]([SubResource("Resource_r5uji")])
-life = 5
+life = 1
 speed = 1000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]

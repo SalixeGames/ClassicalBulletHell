@@ -20,7 +20,7 @@ func _ready() -> void:
 	instantiate_boss()
 	modif_dict = {
 		ACTIONS.Speed: ModifItem.new("Speed", player.update_speed, 500, 500),
-		ACTIONS.Cadency: ModifItem.new("Cadency", player.update_cadency, -15, -15),
+		ACTIONS.Cadency: ModifItem.new("Cadency", player.update_cadency, -10, -10),
 		ACTIONS.BulletSpeed: ModifItem.new("Bullet Speed", player.update_bullet_speed, 750, 750),
 		ACTIONS.Life: ModifItem.new("Life", player.update_life, 1, 2)
 	}
