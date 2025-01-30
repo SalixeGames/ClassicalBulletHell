@@ -15,7 +15,9 @@ func _process(delta: float) -> void:
 	if spawn_timer > life_expectancy:
 		queue_free()
 
-
 func _on_body_entered(body: Node2D) -> void:
 	body.emit_signal("on_hit", 1)
+	queue_free()
+
+func _on_shooter_death():
 	queue_free()

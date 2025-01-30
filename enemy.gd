@@ -53,6 +53,7 @@ func _process(delta: float) -> void:
 func spawn_bullet(pattern: BulletPattern):
 	if can_shoot:
 		for bullet_instance in pattern.get_projectiles(global_transform):
+			self.connect("on_death", bullet_instance._on_shooter_death)
 			top_node.get_parent().add_child(bullet_instance)
 		can_shoot = false
 		await  get_tree().create_timer(pattern.latency).timeout
