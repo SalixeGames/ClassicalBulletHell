@@ -13,7 +13,6 @@ var intagible = false
 
 @export_category("Noises")
 @export var hurt_noise : AudioStreamMP3
-@export var  shoot_noise : AudioStreamMP3
 @export var death_noise :  AudioStreamMP3
 
 
@@ -24,8 +23,6 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("shoot") and can_shoot and not intagible:
 		$AnimationTree.set("parameters/Transition/transition_request", "shooting")
-		$SoundPlayer.stream = death_noise
-		$SoundPlayer.play()
 		for bullet_instance in patterns[0].get_projectiles(global_transform, 2, 1):
 			get_parent().add_child(bullet_instance)
 		
@@ -57,6 +54,7 @@ func got_hit(value: int):
 		
 		if life <= 0:
 			die()
+			return
 			
 		var old_speed = speed
 		speed = old_speed * 2

@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://qogfpjj1cloh"]
+[gd_scene load_steps=17 format=3 uid="uid://qogfpjj1cloh"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_qu2c8"]
 [ext_resource type="Texture2D" uid="uid://r2pd2homvrj1" path="res://Assets/Sprites/hitbox.png" id="2_3jdq1"]
 [ext_resource type="Texture2D" uid="uid://bj8kph8akc6q6" path="res://Assets/Sprites/player.png" id="2_6tx2p"]
-[ext_resource type="AudioStream" uid="uid://beuuhpf5wq6cp" path="res://Assets/Sound/player_shoot.mp3" id="3_i7wjt"]
 [ext_resource type="AudioStream" uid="uid://dbg0ukcf6nq3f" path="res://Assets/Sound/defeaty_royal.mp3" id="4_alfex"]
 [ext_resource type="AudioStream" uid="uid://cmgetk78h1uac" path="res://Assets/Sound/player_hurt.mp3" id="4_mh4xa"]
 
@@ -122,7 +121,6 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_qu2c8")
 hurt_noise = ExtResource("4_mh4xa")
-shoot_noise = ExtResource("3_i7wjt")
 death_noise = ExtResource("4_alfex")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
