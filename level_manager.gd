@@ -6,6 +6,7 @@ var current_id := 0
 
 @export_file("*.tscn") var main_menu : String
 @export var pause_menu : VBoxContainer
+@export var option_menu : Control
 var is_paused : bool = false
 
 @export var player : CharacterBody2D
@@ -13,6 +14,8 @@ var is_paused : bool = false
 @export var shop_buttons : Array[Button]
 enum ACTIONS {Speed, Cadency, BulletSpeed, Life}
 var modif_dict : Dictionary
+
+@export var boss_songs : Array[AudioStreamMP3]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +27,7 @@ func _ready() -> void:
 		ACTIONS.BulletSpeed: ModifItem.new("Bullet Speed", player.update_bullet_speed, 750, 750),
 		ACTIONS.Life: ModifItem.new("Life", player.update_life, 1, 2)
 	}
+	GlobalParameters.connect("volume_changed", _on_volume_changed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -54,6 +58,8 @@ func instantiate_boss():
 	current_boss.global_transform = Transform2D(0, Vector2(0, -840))
 	add_child(current_boss)
 	current_boss.get_child(0).get_child(0).get_child(0).connect("on_death", on_boss_death)  # Cringe (:
+	$AudioStreamPlayer.stream = boss_songs[current_id]
+	$AudioStreamPlayer.play()
 
 func to_main_menu():
 	get_tree().change_scene_to_file(main_menu)
@@ -114,3 +120,17 @@ class ModifItem:
 
 func _on_upgrade_bullet_speed_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_options_pressed() -> void:
+	option_menu.show()
+	pause_menu.hide()
+
+
+func _on_options_confirm() -> void:
+	option_menu.hide()
+	pause_menu.show()
+
+
+func _on_volume_changed():
+	$AudioStreamPlayer.volume_db = GlobalParameters.get_volume()

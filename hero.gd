@@ -18,6 +18,8 @@ var intagible = false
 
 func _enter_tree() -> void:
 	Callable.create(0, "test")
+	$SoundPlayer.volume_db = GlobalParameters.get_volume()
+	GlobalParameters.connect("volume_changed", _on_volume_changed)
 
 func _physics_process(_delta: float) -> void:
 	
@@ -89,6 +91,9 @@ func update_cadency(modificator : int):
 func update_bullet_speed(modificator : int):
 	for pattern in patterns:
 		pattern.projectile_speed += modificator
+
+func _on_volume_changed():
+	$SoundPlayer.volume_db = GlobalParameters.get_volume()
 
 signal on_hit(life : int)
 signal on_death()

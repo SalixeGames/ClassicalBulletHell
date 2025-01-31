@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv7xq22ajkml6"]
+[gd_scene load_steps=16 format=3 uid="uid://dv7xq22ajkml6"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_5iovq"]
 [ext_resource type="Script" path="res://enemy.gd" id="2_d3vi2"]
 [ext_resource type="PackedScene" uid="uid://bdy51b4ki7sm1" path="res://Ressources/Projectiles/beethoven_projectile.tscn" id="3_qk7lq"]
 [ext_resource type="Script" path="res://bullet_pattern.gd" id="4_kmcr4"]
-[ext_resource type="AudioStream" uid="uid://cywdyr3s8r0x5" path="res://Assets/Sound/Beethoven_Bagatela_WoO_59_Fur_Elise.mp3" id="5_2ms6s"]
 [ext_resource type="PackedScene" uid="uid://b70731gfwu7yl" path="res://Ressources/Paths/hourglass_path_e4.tscn" id="5_gp5w3"]
 [ext_resource type="PackedScene" uid="uid://hpd0xkouvvrx" path="res://Ressources/Paths/teeth_path_m1.tscn" id="6_j421c"]
 [ext_resource type="PackedScene" uid="uid://du1x6so62lgb2" path="res://Ressources/Paths/x_path_e5.tscn" id="7_5vqcu"]
@@ -54,7 +53,7 @@ radius = 64.0
 [node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
 rotates = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node", "audio_player")]
 z_index = 1
 collision_layer = 2
 script = ExtResource("2_d3vi2")
@@ -68,17 +67,13 @@ pattern_aggro_1 = SubResource("Resource_csxrt")
 pattern_aggro_2 = SubResource("Resource_5xfg5")
 paths = Array[PackedScene]([ExtResource("5_gp5w3"), ExtResource("6_j421c"), ExtResource("7_5vqcu"), ExtResource("8_abx0k")])
 speed = 551.0
+audio_player = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 texture = ExtResource("9_o8m13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_3gvjj")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_2ms6s")
-pitch_scale = 1.24
-autoplay = true
 
 [node name="EnemyLife" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("8_v22gg")]
 offset_left = -632.0

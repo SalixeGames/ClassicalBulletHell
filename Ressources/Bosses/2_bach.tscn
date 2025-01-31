@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwep542tcw8am"]
+[gd_scene load_steps=16 format=3 uid="uid://bwep542tcw8am"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_sqilb"]
 [ext_resource type="Script" path="res://enemy.gd" id="2_b0vwe"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://du1x6so62lgb2" path="res://Ressources/Paths/x_path_e5.tscn" id="8_t1oi7"]
 [ext_resource type="Texture2D" uid="uid://bllvid8nipwvq" path="res://Assets/Sprites/bach.png" id="9_1obvj"]
 [ext_resource type="PackedScene" uid="uid://c3gcutpkv0kuu" path="res://life_label.tscn" id="9_4oeru"]
-[ext_resource type="AudioStream" uid="uid://co6uionrotb5l" path="res://Assets/Sound/Johann_Sebastian_Bach.mp3" id="10_b4poj"]
 
 [sub_resource type="Resource" id="Resource_i4bdl"]
 script = ExtResource("4_8n64y")
@@ -54,7 +53,7 @@ radius = 64.0
 [node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
 rotates = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node", "audio_player")]
 z_index = 1
 collision_layer = 2
 script = ExtResource("2_b0vwe")
@@ -67,17 +66,13 @@ pattern_aggro_1 = SubResource("Resource_csxrt")
 pattern_aggro_2 = SubResource("Resource_5xfg5")
 paths = Array[PackedScene]([ExtResource("5_1nlrn"), ExtResource("6_wvkpe"), ExtResource("7_bkmy8"), ExtResource("8_t1oi7")])
 speed = 400.0
+audio_player = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 texture = ExtResource("9_1obvj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_3gvjj")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_b4poj")
-pitch_scale = 1.24
-autoplay = true
 
 [node name="EnemyLife" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("9_4oeru")]
 offset_left = -632.0

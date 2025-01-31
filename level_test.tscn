@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bqls5kyua67j2"]
+[gd_scene load_steps=35 format=4 uid="uid://bqls5kyua67j2"]
 
 [ext_resource type="PackedScene" uid="uid://qogfpjj1cloh" path="res://hero.tscn" id="1_38w8d"]
 [ext_resource type="Script" path="res://level_manager.gd" id="1_vskd1"]
@@ -18,9 +18,20 @@
 [ext_resource type="PackedScene" uid="uid://cdi76exrviiaj" path="res://Ressources/Bosses/9_tchaikovski.tscn" id="10_nljwj"]
 [ext_resource type="Script" path="res://player_stats.gd" id="11_k05r1"]
 [ext_resource type="PackedScene" uid="uid://dsmc6ffxmeymr" path="res://Ressources/Bosses/10_debussy.tscn" id="11_mqgp5"]
+[ext_resource type="AudioStream" uid="uid://c4nn3leaehiuj" path="res://Assets/Sound/Vivaldi.mp3" id="12_x4byk"]
+[ext_resource type="AudioStream" uid="uid://co6uionrotb5l" path="res://Assets/Sound/Johann_Sebastian_Bach.mp3" id="13_ttfpw"]
+[ext_resource type="AudioStream" uid="uid://bb1kl1grsuuu2" path="res://Assets/Sound/mozart.mp3" id="14_0s4we"]
 [ext_resource type="PackedScene" uid="uid://xycldt0n6448" path="res://Ressources/Projectiles/player_projectile.tscn" id="14_dhco1"]
+[ext_resource type="AudioStream" uid="uid://cywdyr3s8r0x5" path="res://Assets/Sound/Beethoven_Bagatela_WoO_59_Fur_Elise.mp3" id="15_kwk5q"]
+[ext_resource type="AudioStream" uid="uid://broors15cx87k" path="res://Assets/Sound/chopin.mp3" id="16_22wh8"]
+[ext_resource type="AudioStream" uid="uid://bjd5y3i5t7jjt" path="res://Assets/Sound/wagner.mp3" id="17_fj7l7"]
+[ext_resource type="AudioStream" uid="uid://7gqaw4virr4u" path="res://Assets/Sound/offenbach.mp3" id="18_jfxds"]
 [ext_resource type="Texture2D" uid="uid://d3l237olwutb4" path="res://Assets/Sprites/button.png" id="18_qhskl"]
+[ext_resource type="AudioStream" uid="uid://cvrxagsvgmshp" path="res://Assets/Sound/brahms.mp3" id="19_7iyy4"]
+[ext_resource type="AudioStream" uid="uid://of5ftrgr6cc3" path="res://Assets/Sound/tchaikovski.mp3" id="20_j0omc"]
 [ext_resource type="Theme" uid="uid://174xtm1sk60s" path="res://Assets/Fonts/buttons.tres" id="20_sft4q"]
+[ext_resource type="AudioStream" uid="uid://gol8tma5f5hm" path="res://Assets/Sound/debussy.mp3" id="21_y8rot"]
+[ext_resource type="PackedScene" uid="uid://dhjrahwkl0gv1" path="res://options.tscn" id="22_8p7yk"]
 
 [sub_resource type="Resource" id="Resource_r5uji"]
 script = ExtResource("5_ieeel")
@@ -33,20 +44,22 @@ projectile_speed = 750.0
 [sub_resource type="Theme" id="Theme_hdfbk"]
 default_font_size = 50
 
-[node name="LevelTest" type="Node2D" node_paths=PackedStringArray("pause_menu", "player", "shop_menu", "shop_buttons")]
+[node name="LevelTest" type="Node2D" node_paths=PackedStringArray("pause_menu", "option_menu", "player", "shop_menu", "shop_buttons")]
 position = Vector2(0, -10)
 script = ExtResource("1_vskd1")
 bosses = Array[PackedScene]([ExtResource("2_vv522"), ExtResource("3_p6ic7"), ExtResource("4_v4ood"), ExtResource("3_mppk6"), ExtResource("6_h7xsw"), ExtResource("7_ul2ue"), ExtResource("8_7dg4a"), ExtResource("9_wdjxt"), ExtResource("10_nljwj"), ExtResource("11_mqgp5")])
 main_menu = "res://main_menu.tscn"
 pause_menu = NodePath("UI/PauseMenu")
+option_menu = NodePath("UI/Options")
 player = NodePath("Hero")
 shop_menu = NodePath("UI/SpellShop")
 shop_buttons = [NodePath("UI/SpellShop/UpgradeSpeed"), NodePath("UI/SpellShop/UpgradeCadency"), NodePath("UI/SpellShop/UpgradeBulletSpeed"), NodePath("UI/SpellShop/AddLife")]
+boss_songs = Array[AudioStreamMP3]([ExtResource("12_x4byk"), ExtResource("13_ttfpw"), ExtResource("14_0s4we"), ExtResource("15_kwk5q"), ExtResource("16_22wh8"), ExtResource("17_fj7l7"), ExtResource("18_jfxds"), ExtResource("19_7iyy4"), ExtResource("20_j0omc"), ExtResource("21_y8rot")])
 metadata/_edit_horizontal_guides_ = [-419.0, 246.0]
 
 [node name="Hero" parent="." instance=ExtResource("1_38w8d")]
 patterns = Array[ExtResource("5_ieeel")]([SubResource("Resource_r5uji")])
-life = 1
+life = 5
 speed = 1000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -107,6 +120,15 @@ layout_mode = 2
 text = "Resume"
 icon = ExtResource("18_qhskl")
 flat = true
+clip_text = true
+icon_alignment = 1
+text_direction = 1
+
+[node name="Options" type="Button" parent="UI/PauseMenu"]
+layout_mode = 2
+text = "Options"
+flat = true
+clip_text = true
 icon_alignment = 1
 text_direction = 1
 
@@ -180,6 +202,9 @@ icon = ExtResource("18_qhskl")
 flat = true
 icon_alignment = 1
 
+[node name="Options" parent="UI" instance=ExtResource("22_8p7yk")]
+visible = false
+
 [node name="PlayerStats" type="Control" parent="UI" node_paths=PackedStringArray("speed_label", "cadency_label", "bullet_speed_label", "player")]
 layout_mode = 3
 anchors_preset = 3
@@ -232,9 +257,12 @@ offset_right = -179.0
 offset_bottom = 69.0
 text = "Bullet"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="on_death" from="Hero" to="." method="on_player_death"]
 [connection signal="on_hit" from="Hero" to="UI/PlayerStats/PlayerLife" method="_on_enemy_hit"]
 [connection signal="pressed" from="UI/PauseMenu/Resume" to="." method="resume"]
+[connection signal="pressed" from="UI/PauseMenu/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/MainMenu" to="." method="to_main_menu"]
 [connection signal="pressed" from="UI/PauseMenu/Exit" to="." method="exit_game"]
 [connection signal="pressed" from="UI/SpellShop/UpgradeSpeed" to="Hero" method="update_speed"]
@@ -245,3 +273,4 @@ text = "Bullet"
 [connection signal="pressed" from="UI/SpellShop/UpgradeBulletSpeed" to="." method="on_shop_button_pressed" binds= [2]]
 [connection signal="pressed" from="UI/SpellShop/AddLife" to="Hero" method="update_life"]
 [connection signal="pressed" from="UI/SpellShop/AddLife" to="." method="on_shop_button_pressed" binds= [3]]
+[connection signal="confirm" from="UI/Options" to="." method="_on_options_confirm"]

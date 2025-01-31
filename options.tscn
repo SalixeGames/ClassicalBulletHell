@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhjrahwkl0gv1"]
+
+[ext_resource type="Theme" uid="uid://174xtm1sk60s" path="res://Assets/Fonts/buttons.tres" id="1_kytyr"]
+[ext_resource type="Script" path="res://options.gd" id="2_ofm56"]
+
+[node name="Options" type="Control" node_paths=PackedStringArray("volume_label", "volume_slider")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kytyr")
+script = ExtResource("2_ofm56")
+volume_label = NodePath("HSplitContainer/HSplitContainer2/VolumePercent")
+volume_slider = NodePath("HSplitContainer/HSplitContainer2/HSlider")
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = 716.12
+offset_right = 130.0
+offset_bottom = 816.12
+grow_horizontal = 2
+grow_vertical = 0
+text = "Confirm"
+clip_text = true
+icon_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_right = 456.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 50
+
+[node name="Label" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+text = "Volume:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+split_offset = 50
+
+[node name="HSlider" type="HSlider" parent="HSplitContainer/HSplitContainer2"]
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(500, 92)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Volume"
+value = 50.0
+
+[node name="VolumePercent" type="Label" parent="HSplitContainer/HSplitContainer2"]
+layout_mode = 2
+text = "100%"
+
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="value_changed" from="HSplitContainer/HSplitContainer2/HSlider" to="." method="_on_h_slider_value_changed"]

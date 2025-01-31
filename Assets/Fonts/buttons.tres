@@ -1,6 +1,28 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://174xtm1sk60s"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://174xtm1sk60s"]
 
+[ext_resource type="Texture2D" uid="uid://ccnenvkwvxyth" path="res://Assets/Sprites/player_bullet.png" id="1_0orqe"]
+[ext_resource type="Texture2D" uid="uid://d3l237olwutb4" path="res://Assets/Sprites/button.png" id="1_8x32u"]
 [ext_resource type="FontFile" uid="uid://keb1mrf2d4xx" path="res://Assets/Fonts/Permanent_Marker/PermanentMarker-Regular.ttf" id="1_s5can"]
+[ext_resource type="Texture2D" uid="uid://r2pd2homvrj1" path="res://Assets/Sprites/hitbox.png" id="2_mu1fd"]
+[ext_resource type="Texture2D" uid="uid://xh3qkmut4reg" path="res://Assets/Sprites/bach_bullet.png" id="3_2mxq1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrnba"]
+bg_color = Color(1, 0.666667, 0.647059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80vrq"]
+bg_color = Color(1, 0.545098, 0.580392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkwxo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.862745, 0.929412, 0.756863, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
 
 [resource]
 default_font = ExtResource("1_s5can")
@@ -11,3 +33,17 @@ Button/colors/font_focus_color = Color(1, 0.545098, 0.580392, 1)
 Button/colors/font_hover_color = Color(1, 0.545098, 0.580392, 1)
 Button/colors/font_hover_pressed_color = Color(1, 0.827451, 0.713726, 1)
 Button/colors/font_pressed_color = Color(1, 0.827451, 0.713726, 1)
+Button/icons/icon = ExtResource("1_8x32u")
+HBoxContainer/constants/separation = 4
+HSlider/icons/grabber = ExtResource("1_0orqe")
+HSlider/icons/grabber_disabled = ExtResource("2_mu1fd")
+HSlider/icons/grabber_highlight = ExtResource("3_2mxq1")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_yrnba")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_80vrq")
+HSlider/styles/slider = SubResource("StyleBoxFlat_nkwxo")
+Label/colors/font_color = Color(1, 0.666667, 0.647059, 1)
+Label/colors/font_outline_color = Color(1, 0.545098, 0.580392, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 3
+Label/constants/shadow_offset_x = 5
+Label/constants/shadow_offset_y = 5
