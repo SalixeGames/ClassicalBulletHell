@@ -18,8 +18,8 @@ var intagible = false
 
 func _enter_tree() -> void:
 	Callable.create(0, "test")
-	$SoundPlayer.volume_db = GlobalParameters.get_volume()
-	GlobalParameters.connect("volume_changed", _on_volume_changed)
+	$SoundPlayer.volume_db = GlobalParameters.get_sfx_volume()
+	GlobalParameters.connect("sfx_volume_changed", _on_sfx_volume_changed)
 
 func _physics_process(_delta: float) -> void:
 	
@@ -61,8 +61,7 @@ func got_hit(value: int):
 		var old_speed = speed
 		speed = old_speed * 2
 		
-		$SoundPlayer.stream = hurt_noise
-		$SoundPlayer.play()
+		play_hurt_noise()
 		
 		intagible = true
 		if get_tree():
@@ -70,6 +69,10 @@ func got_hit(value: int):
 		intagible = false
 		$AnimationTree.set("parameters/Transition/transition_request", "idle")
 		speed = old_speed
+
+func play_hurt_noise():
+	$SoundPlayer.stream = hurt_noise
+	$SoundPlayer.play()
 
 func die():
 	$SoundPlayer.stream = death_noise
@@ -92,8 +95,9 @@ func update_bullet_speed(modificator : int):
 	for pattern in patterns:
 		pattern.projectile_speed += modificator
 
-func _on_volume_changed():
-	$SoundPlayer.volume_db = GlobalParameters.get_volume()
+func _on_sfx_volume_changed():
+	$SoundPlayer.volume_db = GlobalParameters.get_sfx_volume()
+	play_hurt_noise()
 
 signal on_hit(life : int)
 signal on_death()

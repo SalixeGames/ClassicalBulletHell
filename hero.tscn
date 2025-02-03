@@ -149,6 +149,6 @@ libraries = {
 }
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_alfex")
+stream = ExtResource("4_mh4xa")
 
 [connection signal="on_hit" from="." to="." method="got_hit"]

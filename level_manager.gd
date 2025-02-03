@@ -27,7 +27,8 @@ func _ready() -> void:
 		ACTIONS.BulletSpeed: ModifItem.new("Bullet Speed", player.update_bullet_speed, 750, 750),
 		ACTIONS.Life: ModifItem.new("Life", player.update_life, 1, 2)
 	}
-	GlobalParameters.connect("volume_changed", _on_volume_changed)
+	GlobalParameters.connect("music_volume_changed", _on_music_volume_changed)
+	$MusicPlayer.volume_db = GlobalParameters.get_music_volume()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -58,8 +59,8 @@ func instantiate_boss():
 	current_boss.global_transform = Transform2D(0, Vector2(0, -840))
 	add_child(current_boss)
 	current_boss.get_child(0).get_child(0).get_child(0).connect("on_death", on_boss_death)  # Cringe (:
-	$AudioStreamPlayer.stream = boss_songs[current_id]
-	$AudioStreamPlayer.play()
+	$MusicPlayer.stream = boss_songs[current_id]
+	$MusicPlayer.play()
 
 func to_main_menu():
 	get_tree().change_scene_to_file(main_menu)
@@ -68,8 +69,11 @@ func exit_game():
 	get_tree().quit()
 
 func resume():
-	is_paused = false
-	pause_menu.hide()
+	if pause_menu.visible:
+		pause_menu.hide()
+		is_paused = false
+	if option_menu.visible:
+		option_menu.emit_signal("confirm")
 
 func on_shop_button_pressed(button_id : int):
 	var modif_item : ModifItem = modif_dict[button_id]
@@ -132,5 +136,5 @@ func _on_options_confirm() -> void:
 	pause_menu.show()
 
 
-func _on_volume_changed():
-	$AudioStreamPlayer.volume_db = GlobalParameters.get_volume()
+func _on_music_volume_changed():
+	$MusicPlayer.volume_db = GlobalParameters.get_music_volume()

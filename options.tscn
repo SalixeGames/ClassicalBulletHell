@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://174xtm1sk60s" path="res://Assets/Fonts/buttons.tres" id="1_kytyr"]
 [ext_resource type="Script" path="res://options.gd" id="2_ofm56"]
 
-[node name="Options" type="Control" node_paths=PackedStringArray("volume_label", "volume_slider")]
+[node name="Options" type="Control" node_paths=PackedStringArray("music_volume_label", "music_volume_slider", "sfx_volume_label", "sfx_volume_slider")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -14,8 +14,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kytyr")
 script = ExtResource("2_ofm56")
-volume_label = NodePath("HSplitContainer/HSplitContainer2/VolumePercent")
-volume_slider = NodePath("HSplitContainer/HSplitContainer2/HSlider")
+music_volume_label = NodePath("VSplitContainer/MusicVolumeContainer/HSplitContainer2/MusicVolumePercent")
+music_volume_slider = NodePath("VSplitContainer/MusicVolumeContainer/HSplitContainer2/MusicSlider")
+sfx_volume_label = NodePath("VSplitContainer/SFXVolumeContainer2/HSplitContainer2/SFXVolumePercent")
+sfx_volume_slider = NodePath("VSplitContainer/SFXVolumeContainer2/HSplitContainer2/SFXSlider")
 
 [node name="ConfirmButton" type="Button" parent="."]
 layout_mode = 1
@@ -34,31 +36,38 @@ text = "Confirm"
 clip_text = true
 icon_alignment = 1
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -464.0
-offset_right = 456.0
-offset_bottom = 92.0
+offset_left = -436.0
+offset_top = -98.0
+offset_right = 436.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
-split_offset = 50
 
-[node name="Label" type="Label" parent="HSplitContainer"]
+[node name="MusicVolumeContainer" type="HSplitContainer" parent="VSplitContainer"]
+custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
-text = "Volume:"
+split_offset = 1000
+
+[node name="MusicVolumeLabel" type="Label" parent="VSplitContainer/MusicVolumeContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSplitContainer2" type="HSplitContainer" parent="HSplitContainer"]
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/MusicVolumeContainer"]
 layout_mode = 2
 split_offset = 50
 
-[node name="HSlider" type="HSlider" parent="HSplitContainer/HSplitContainer2"]
+[node name="MusicSlider" type="HSlider" parent="VSplitContainer/MusicVolumeContainer/HSplitContainer2"]
 physics_interpolation_mode = 1
 custom_minimum_size = Vector2(500, 92)
 layout_mode = 2
@@ -66,9 +75,46 @@ size_flags_vertical = 4
 tooltip_text = "Volume"
 value = 50.0
 
-[node name="VolumePercent" type="Label" parent="HSplitContainer/HSplitContainer2"]
+[node name="MusicVolumePercent" type="Label" parent="VSplitContainer/MusicVolumeContainer/HSplitContainer2"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "100%"
+horizontal_alignment = 2
+
+[node name="SFXVolumeContainer2" type="HSplitContainer" parent="VSplitContainer"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+split_offset = 1000
+
+[node name="SFXVolumeLabel" type="Label" parent="VSplitContainer/SFXVolumeContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SFX:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/SFXVolumeContainer2"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+split_offset = 50
+
+[node name="SFXSlider" type="HSlider" parent="VSplitContainer/SFXVolumeContainer2/HSplitContainer2"]
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(500, 92)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Volume"
+value = 50.0
+
+[node name="SFXVolumePercent" type="Label" parent="VSplitContainer/SFXVolumeContainer2/HSplitContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "0%"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="value_changed" from="HSplitContainer/HSplitContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="drag_ended" from="VSplitContainer/MusicVolumeContainer/HSplitContainer2/MusicSlider" to="." method="_on_music_value_changed"]
+[connection signal="drag_ended" from="VSplitContainer/SFXVolumeContainer2/HSplitContainer2/SFXSlider" to="." method="_on_sfx_value_changed"]
