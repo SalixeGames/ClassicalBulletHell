@@ -39,6 +39,13 @@ func _process(delta: float) -> void:
 			grab_first_button(pause_menu)
 		else:
 			resume()
+			
+	if Input.is_action_just_pressed("full_screen"):
+		var full_screen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+		if not full_screen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
 func on_boss_death():
 	current_boss.queue_free()

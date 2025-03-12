@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://dsmc6ffxmeymr"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_aytly"]
-[ext_resource type="Script" path="res://enemy.gd" id="2_ntvlg"]
+[ext_resource type="Script" uid="uid://c3gbhi3ijw8h3" path="res://enemy.gd" id="2_ntvlg"]
 [ext_resource type="PackedScene" uid="uid://beg0ekiohbjh2" path="res://Ressources/Projectiles/debussy_projectile.tscn" id="3_x84ce"]
-[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_77f37"]
+[ext_resource type="Script" uid="uid://bau2b74h0hs3x" path="res://bullet_pattern.gd" id="4_77f37"]
 [ext_resource type="PackedScene" uid="uid://bdolo3lrs20a3" path="res://Ressources/Paths/star_path_h1.tscn" id="5_fpvuv"]
 [ext_resource type="PackedScene" uid="uid://cpxfog2lpcw3g" path="res://Ressources/Paths/pee_stain_path_h2.tscn" id="6_0onwc"]
 [ext_resource type="PackedScene" uid="uid://80r85brvtfjc" path="res://Ressources/Paths/twirl_path_h3.tscn" id="7_7m7v0"]

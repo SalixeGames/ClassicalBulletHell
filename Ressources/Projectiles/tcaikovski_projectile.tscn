@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b37din5rs1p"]
 
-[ext_resource type="Script" path="res://Ressources/Projectiles/projectile.gd" id="1_5qsw6"]
+[ext_resource type="Script" uid="uid://i3gm0lrw76ml" path="res://Ressources/Projectiles/projectile.gd" id="1_5qsw6"]
 [ext_resource type="Texture2D" uid="uid://c3aba8mvijm7w" path="res://Assets/Sprites/tchaikovski_bullet.png" id="2_77a5n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xqtqm"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhjrahwkl0gv1"]
 
 [ext_resource type="Theme" uid="uid://174xtm1sk60s" path="res://Assets/Fonts/buttons.tres" id="1_kytyr"]
-[ext_resource type="Script" path="res://options.gd" id="2_ofm56"]
+[ext_resource type="Script" uid="uid://dh67dv30u1nxl" path="res://options.gd" id="2_ofm56"]
 
 [node name="Options" type="Control" node_paths=PackedStringArray("music_volume_label", "music_volume_slider", "sfx_volume_label", "sfx_volume_slider")]
 layout_mode = 3

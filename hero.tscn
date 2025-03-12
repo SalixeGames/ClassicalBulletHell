@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://qogfpjj1cloh"]
 
-[ext_resource type="Script" path="res://hero.gd" id="1_qu2c8"]
+[ext_resource type="Script" uid="uid://hfyra6150tft" path="res://hero.gd" id="1_qu2c8"]
 [ext_resource type="Texture2D" uid="uid://r2pd2homvrj1" path="res://Assets/Sprites/hitbox.png" id="2_3jdq1"]
 [ext_resource type="Texture2D" uid="uid://bj8kph8akc6q6" path="res://Assets/Sprites/player.png" id="2_6tx2p"]
 [ext_resource type="AudioStream" uid="uid://dbg0ukcf6nq3f" path="res://Assets/Sound/defeaty_royal.mp3" id="4_alfex"]
@@ -110,10 +110,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_woyxs"]
 _data = {
-"RESET": SubResource("Animation_41ucs"),
-"hurt": SubResource("Animation_8wurp"),
-"idle": SubResource("Animation_0dhh0"),
-"shooting": SubResource("Animation_5k7hy")
+&"RESET": SubResource("Animation_41ucs"),
+&"hurt": SubResource("Animation_8wurp"),
+&"idle": SubResource("Animation_0dhh0"),
+&"shooting": SubResource("Animation_5k7hy")
 }
 
 [node name="Hero" type="CharacterBody2D"]
@@ -129,10 +129,12 @@ shape = SubResource("CircleShape2D_cn3gh")
 
 [node name="HitBoxVisualizer" type="Sprite2D" parent="."]
 z_index = 1
+texture_filter = 5
 position = Vector2(0, 14)
 texture = ExtResource("2_3jdq1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 5
 texture = ExtResource("2_6tx2p")
 hframes = 7
 
@@ -145,7 +147,7 @@ parameters/Transition/current_index = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_woyxs")
+&"": SubResource("AnimationLibrary_woyxs")
 }
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]

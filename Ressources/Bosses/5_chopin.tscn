@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://brdk002mn5fig"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_vkqlj"]
-[ext_resource type="Script" path="res://enemy.gd" id="2_wlfvo"]
+[ext_resource type="Script" uid="uid://c3gbhi3ijw8h3" path="res://enemy.gd" id="2_wlfvo"]
 [ext_resource type="PackedScene" uid="uid://cusgn8obfm5bq" path="res://Ressources/Projectiles/chopin_projectile.tscn" id="3_mfmqb"]
-[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_whuu5"]
+[ext_resource type="Script" uid="uid://bau2b74h0hs3x" path="res://bullet_pattern.gd" id="4_whuu5"]
 [ext_resource type="PackedScene" uid="uid://hpd0xkouvvrx" path="res://Ressources/Paths/teeth_path_m1.tscn" id="5_h21pr"]
 [ext_resource type="PackedScene" uid="uid://cmc50iwsmo0px" path="res://Ressources/Paths/sinus_path_m2.tscn" id="6_q4v5h"]
 [ext_resource type="Texture2D" uid="uid://bp5tup2l6tuuu" path="res://Assets/Sprites/chopin.png" id="7_22fpc"]

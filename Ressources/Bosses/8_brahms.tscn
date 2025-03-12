@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://47ja2q0ttm3f"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_67ktg"]
-[ext_resource type="Script" path="res://enemy.gd" id="2_24x00"]
+[ext_resource type="Script" uid="uid://c3gbhi3ijw8h3" path="res://enemy.gd" id="2_24x00"]
 [ext_resource type="PackedScene" uid="uid://d4b8etrsr8lcc" path="res://Ressources/Projectiles/brahms_projectile.tscn" id="3_vpxjg"]
-[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_uvb8c"]
+[ext_resource type="Script" uid="uid://bau2b74h0hs3x" path="res://bullet_pattern.gd" id="4_uvb8c"]
 [ext_resource type="PackedScene" uid="uid://bdwra6ojejoo5" path="res://Ressources/Paths/line_path_e1.tscn" id="5_itt5o"]
 [ext_resource type="PackedScene" uid="uid://bdolo3lrs20a3" path="res://Ressources/Paths/star_path_h1.tscn" id="6_2pc3c"]
 [ext_resource type="PackedScene" uid="uid://cpxfog2lpcw3g" path="res://Ressources/Paths/pee_stain_path_h2.tscn" id="6_v8jh1"]

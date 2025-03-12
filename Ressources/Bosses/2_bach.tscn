@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://bwep542tcw8am"]
 
 [ext_resource type="PackedScene" uid="uid://k4icvwdyc5tf" path="res://Ressources/Paths/circle_path_e2.tscn" id="1_sqilb"]
-[ext_resource type="Script" path="res://enemy.gd" id="2_b0vwe"]
+[ext_resource type="Script" uid="uid://c3gbhi3ijw8h3" path="res://enemy.gd" id="2_b0vwe"]
 [ext_resource type="PackedScene" uid="uid://cdskkjhm2diuw" path="res://Ressources/Projectiles/bach_projectile.tscn" id="3_1hfmp"]
-[ext_resource type="Script" path="res://bullet_pattern.gd" id="4_8n64y"]
+[ext_resource type="Script" uid="uid://bau2b74h0hs3x" path="res://bullet_pattern.gd" id="4_8n64y"]
 [ext_resource type="PackedScene" uid="uid://bdwra6ojejoo5" path="res://Ressources/Paths/line_path_e1.tscn" id="5_1nlrn"]
 [ext_resource type="PackedScene" uid="uid://b70731gfwu7yl" path="res://Ressources/Paths/hourglass_path_e4.tscn" id="6_wvkpe"]
 [ext_resource type="PackedScene" uid="uid://by2n6i06l8anu" path="res://Ressources/Paths/parrallelogram_path_e3.tscn" id="7_bkmy8"]
@@ -53,7 +53,7 @@ radius = 64.0
 [node name="PathFollow2D" type="PathFollow2D" parent="CirclePath"]
 rotates = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node", "audio_player")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CirclePath/PathFollow2D" node_paths=PackedStringArray("path_follow", "top_node")]
 z_index = 1
 collision_layer = 2
 script = ExtResource("2_b0vwe")
@@ -66,7 +66,6 @@ pattern_aggro_1 = SubResource("Resource_csxrt")
 pattern_aggro_2 = SubResource("Resource_5xfg5")
 paths = Array[PackedScene]([ExtResource("5_1nlrn"), ExtResource("6_wvkpe"), ExtResource("7_bkmy8"), ExtResource("8_t1oi7")])
 speed = 400.0
-audio_player = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="CirclePath/PathFollow2D/CharacterBody2D"]
 texture = ExtResource("9_1obvj")
